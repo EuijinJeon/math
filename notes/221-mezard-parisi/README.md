@@ -15,7 +15,7 @@
 | 6.4 Poisson insertion and analytic extraction | [06-4-palm-analytic.md](06-4-palm-analytic.md) | 완료 |
 | 6.5 Prescribing the colored tree | [06-5-prescribed-trees.md](06-5-prescribed-trees.md) | 완료 |
 | 7 도입 + 7.1 Averages over depths | [07-1-depth-averages.md](07-1-depth-averages.md) | 완료 |
-| 7.2 Conditional covariance and continuity in depth | — | 미착수 |
+| 7.2 Conditional covariance and continuity in depth | [07-2-conditional-covariance.md](07-2-conditional-covariance.md) | 완료 |
 | 7.3 Conditional decorrelation | — | 미착수 |
 | 7.4 Concentration of every multioverlap | — | 미착수 |
 | 8.1–8.3 Independent messages and comparison | — | 미착수 |
