@@ -16,7 +16,7 @@
 | 6.5 Prescribing the colored tree | [06-5-prescribed-trees.md](06-5-prescribed-trees.md) | 완료 |
 | 7 도입 + 7.1 Averages over depths | [07-1-depth-averages.md](07-1-depth-averages.md) | 완료 |
 | 7.2 Conditional covariance and continuity in depth | [07-2-conditional-covariance.md](07-2-conditional-covariance.md) | 완료 |
-| 7.3 Conditional decorrelation | — | 미착수 |
+| 7.3 Conditional decorrelation | [07-3-conditional-decorrelation.md](07-3-conditional-decorrelation.md) | 작업 중 (문단 1–6) |
 | 7.4 Concentration of every multioverlap | — | 미착수 |
 | 8.1–8.3 Independent messages and comparison | — | 미착수 |
 | 9 Normalization, truncation, completion | — | 미착수 |
