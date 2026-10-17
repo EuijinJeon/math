@@ -116,4 +116,127 @@ $k\ge2$와 multi-overlap $R_E$는 희석 모형에 필요한 고차 버전입니
 
 ✓
 
-> (작업 중 — 다음 문단부터 이어짐)
+---
+
+## 문단 4. 증명 ② 표시 선택자 (6.18)
+
+> It remains to arrange that the expectation over the marks selects exactly the extensions
+> satisfying $\mathcal C$. For a pair of colors $a,b\in\{0,\ldots,k\}$ and a depth $1\leq d\leq L-1$,
+> the event that their split depth is at least $d$ is the event that they share their vertex at depth
+> $d$. Introduce a new independent Rademacher coordinate at that depth and give both $g_a$ and $g_b$ its
+> factor. Its contribution to their joint mark expectation is $1$ if the vertex is shared and $0$
+> otherwise. For a finite collection of such requirements, use different independent coordinates for
+> the different requirements and define each $g_a$ as the product of its assigned factors. Then
+> $$\mathbb E_{\rm marks}\left[g_0^{a_*}\prod_{j=1}^kg_j^{a_j(E)}\right]=\prod_{(a,b,d)\ {\rm required}}\mathbf1_{\{a,b\text{ share their depth-}d\text{ vertex}\}}.\tag{6.18}$$
+> All marks in this calculation are independent of the base reservoir.
+
+### 검증
+
+요구 $(a,b,d)$마다 독립 Rademacher 좌표 $\epsilon^{(a,b,d)}$를 깊이 $d$에 두고 $g_a$, $g_b$에 곱합니다.
+기대값은 요구마다 인수분해되고 (좌표들이 독립), 요구 하나의 기여는 $\mathbb E[\epsilon_{v_a}\epsilon_{v_b}]$
+($v_a$, $v_b$는 $a$, $b$ 경로의 깊이-$d$ 꼭짓점) $=\mathbf 1\{v_a=v_b\}$. ✓ 모든 표시 변수는 새 삽입의
+변수이므로 저장소와 독립. ✓
+
+### 수치 확인 (정확 열거, $L=4$)
+
+색 0 (anchor), 1, 2의 경로: $(0,1)$ 깊이 2에서 갈라짐, $(0,2)$와 $(1,2)$는 깊이 1에서 갈라짐.
+
+| 요구 집합 | $\mathbb E_{\rm marks}[\cdots]$ | 지시함수 |
+|---|---|---|
+| $(0,1,2)$ | 1 | 1 |
+| $(0,1,3)$ | 0 | 0 |
+| $(0,1,2),(1,2,1)$ | 1 | 1 |
+| $(0,1,2),(0,2,2)$ | 0 | 0 |
+| $(0,2,1)$ | 1 | 1 |
+
+✓
+
+---
+
+## 문단 5. 증명 ③ 정확한 갈라짐과 임의 모양의 선택
+
+> Let $H_d(a,b)$ denote the sharing indicator in (6.18), with $H_0=1$ and $H_L=0$ for distinct replica
+> positions. These are positions in the sampled tree, even when their spin configurations happen to
+> agree. Exact splitting at depth $d$ is expressed by $H_d-H_{d+1}$, for $0\leq d\leq L-1$. Products
+> and finite linear combinations therefore select any prescribed consistent colored shape or
+> collection of allowed shapes. For each term of this finite linear combination, the functions
+> $g_0,\ldots,g_k$ are products of signs and hence take values in $\{-1,1\}$. These functions and their
+> polarization averages belong to the mark family fixed at the start of the section. Constant marks
+> cover $k=0$.
+
+### 해석과 검증
+
+- $H_d$는 $d$에 대해 단조 감소 ($H_0=1\ge H_1\ge\dots\ge H_L=0$)이고, 갈라짐 깊이 $=\max\{d:H_d=1\}$이므로
+  $\mathbf 1\{\text{split}=d\}=H_d-H_{d+1}$. ✓
+- $H_L=0$: 서로 다른 replica **위치**(나무 잎)는 깊이 $L$ 꼭짓점이 다릅니다. 스핀 배치 값이 우연히 같아도
+  상관없습니다 (3.1절: "Replica positions at depth $L$ are distinct vertices"). 그래서 깊이 $L$의 표시는 필요 없습니다.
+- 곱을 전개하면 $\prod(H_d-H_{d+1})$은 $H$들의 곱의 부호 있는 유한 합이고, 각 곱은 (6.18)의 한 선택자로
+  구현됩니다. (6.17)은 이 유한 선형결합의 각 항에 대해 성립하므로 합에도 성립합니다. ✓
+- 각 $g_a$는 부호의 곱이라 $\{-1,1\}$ 값, 편극 평균 $k^{-1}\sum\epsilon_jg_j$는 유리수 값 $[-1,1]$. ✓
+
+### 물리적 의미
+
+"두 replica가 정확히 깊이 $d$에서 갈라진다"는 RSB의 언어로 "overlap이 $q_d$ 값을 갖는다"에 해당합니다.
+연속 overlap 값 대신 이산 깊이 지시함수를 쓰므로 Talagrand의 ultrametricity 증명이나 Panchenko의
+"GG ⇒ ultrametricity" 정리를 거치지 않고, 위계 구조를 **처음부터 나무 위에서** 다룹니다.
+
+---
+
+## 문단 6. 증명 ④ 마무리
+
+> Finally apply the mixed canceled-anchor expansion to the difference (6.15), average the marks using
+> the selector, and average the independent uniform insertion site. The latter average is exactly
+> $R_E$. Lemma 6.4 and polarization make the coefficient difference tend to zero, yielding (6.17).
+> Finite linear combinations extend the conclusion from overlap monomials to the stated tests. The
+> construction uses only marks through depth $L-1$: the extension rule never reuses the anchor or an
+> already used color, so no test of coincidence at depth $L$ is required.
+
+### 검증 (한 줄씩)
+
+1. Lemma 3.3 (3.11): $\partial_{z_1}\cdots\partial_{z_k}E^{A}_{\mathcal T}\frac{H}{A^{a_*}}\big|_0=\sum_Ec_EE_{\mathcal T_E}[H\prod_jD_j^{a_j(E)}]$,
+   여기서 $H=f\,g_0^{a_*}S_0^{a_*}$, $D_j=g_j\sigma_i$. ✓ (6.14)의 $J$에서 $A^{a_*}$로 나눈 형태와 일치.
+2. 표시 평균: $\mathbb E_{\rm marks}[g_0^{a_*}\prod_jg_j^{a_j(E)}]$ = (6.18) = $\mathbf 1\{E\in\mathfrak E(\cdot,\mathcal C)\}$
+   (선형결합 후). ✓ 스핀 부분과 표시 부분은 독립이라 분리됩니다.
+3. 자리 평균: $\mathbb E_i[S_0^{a_*}\prod_j\sigma_i^{a_j(E)}]=R_E$ (spin anchor면 $\sigma_i^{a_*}$ 포함). ✓
+4. 둘째 항 ($\mathcal T=\{a_*\}$, $f=1$)도 같은 처리로 $\sum_Ec_E\mathbb E[R_E]$. ✓
+5. 혼합 도함수 → 0 (문단 3) ⇒ (6.17). ✓ $f$는 multi-overlap 단항식의 유한 결합이므로 선형성. ✓
+6. 깊이 $L$: 확장 규칙은 anchor와 이미 쓴 색을 다시 고르지 않으므로, 서로 다른 색은 언제나 다른 잎 →
+   깊이 $L$ 일치 여부를 시험할 필요가 없습니다. ✓ (표시 좌표가 깊이 $1..L-1$에만 있는 이유.)
+
+---
+
+## 문단 7. Remark 6.6 (Order of the choices)
+
+> The mark specifications and their positive weights $c_\nu$ are fixed first, for a fixed $L$.
+> Parameter averaging then gives one selected sequence on which all types concentrate and all finite
+> overlap moments converge. The analytic argument takes $N\to\infty$ with each $j$ fixed before
+> sending $j\to\infty$. Only after the resulting prescribed-tree identities have been established is
+> $L$ allowed to increase. No concentration estimate uniform over the countable family is needed.
+
+### 해석 — 극한 순서 정리
+
+| 순서 | 고정/극한 | 근거 |
+|---|---|---|
+| 1 | $L$, 명세 족, $c_\nu$ 고정 | 6.1절 |
+| 2 | $\pi$-평균으로 수열 $(N_j,\mathbf u_j)$ 선택 | Lemma 6.2 |
+| 3 | 각 $j$ (종류) 고정, $N\to\infty$ | Lemma 6.3, (6.16) |
+| 4 | $j\to\infty$ | Lemma 6.4 ($H\equiv0$) |
+| 5 | 나무 항등식 확립 후 $L\to\infty$ | 7–9장 |
+
+$\nu$에 대한 균등 집중이 필요 없는 이유: 각 항등식은 **유한 개**의 종류 (하나의 명세, 무한히 많은 $j$ 중
+"충분히 큰" 것들에 대해 개별적으로)만 쓰고, 각 $j$마다 $N\to\infty$를 따로 합니다.
+
+---
+
+## 요약
+
+- 정리 6.5: 저장소 나무에서, 옛 replica 정보 $f$는 anchor에 붙인 색들의 계수 가중 multi-overlap 통계와
+  점근적으로 독립 (6.17). 모든 old tree, 두 종류의 anchor, 모든 색 수 $k$, 모든 깊이 제약 $\mathcal C$.
+- $L=1$의 형식적 계산에서 (6.17)이 정확히 Ghirlanda–Guerra 항등식이 됨을 확인했고, $L\ge2$에서는 깊이별
+  층을 이룬 GG 항등식의 고차·multi-overlap 버전입니다.
+- 증명: 편극으로 색마다 다른 표시 함수 (수치 확인), Rademacher 선택자 (6.18)로 갈라짐 깊이 지정 (열거 확인),
+  $H_d-H_{d+1}$로 정확한 깊이, Lemma 6.4로 계수 소멸.
+- 극한 순서: $L$ 고정 → $N\to\infty$ ($j$ 고정) → $j\to\infty$ → 마지막에 $L$.
+
+**다음 절 예고**: 7장 7.1절에서 갈라짐 깊이에 대한 평균을 도입하고, 이 항등식들을 써서 서로 다른 자리의
+스핀이 상태 안에서 상관을 잃음 (decorrelation)을 보이기 시작합니다.
