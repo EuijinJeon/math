@@ -10,7 +10,7 @@
 | 4 The interpolation upper bound | [04-interpolation-upper-bound.md](04-interpolation-upper-bound.md) | 완료 |
 | 5 A perturbed cavity reservoir | [05-cavity-reservoir.md](05-cavity-reservoir.md) | 완료 |
 | 6 도입 + 6.1 The perturbation family | [06-1-perturbation-family.md](06-1-perturbation-family.md) | 완료 |
-| 6.2 Concentration of each perturbation score | — | 미착수 |
+| 6.2 Concentration of each perturbation score | [06-2-score-concentration.md](06-2-score-concentration.md) | 작업 중 (문단 1–6) |
 | 6.3 One sequence for low increments | — | 미착수 |
 | 6.4 Poisson insertion and analytic extraction | — | 미착수 |
 | 6.5 Prescribing the colored tree | — | 미착수 |
