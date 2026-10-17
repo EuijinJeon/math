@@ -21,5 +21,5 @@
 | 8 도입 + 8.1 Encoding a single-site tree | [08-1-encoding.md](08-1-encoding.md) | 완료 |
 | 8.2 From multioverlaps to spin patterns | [08-2-patterns.md](08-2-patterns.md) | 완료 |
 | 8.3 Comparison of the insertion logarithms | [08-3-insertion-comparison.md](08-3-insertion-comparison.md) | 완료 |
-| 9 Normalization, truncation, completion | — | 미착수 |
+| 9 Normalization, truncation, completion | [09-completion.md](09-completion.md) | 완료 (5장 판단 메모 정정 포함) |
 | 10 Named models and zero temperature | — | 미착수 |
