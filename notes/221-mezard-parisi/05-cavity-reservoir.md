@@ -182,4 +182,171 @@ $\liminf F_N=\liminf\frac1NP_N^{L,\mathbf u}$이고, 섭동된 계로 ASS를 해
 $\log Y_0$는 단순한 Gibbs 평균의 로그가 아니라 **power mean의 로그**, 즉 상태들에 대해
 $Z_\alpha^{m}$으로 재가중한 평균입니다 (Lemma 3.1).
 
-> (작업 중 — 다음 문단부터 이어짐)
+---
+
+## 문단 6. 증명 ① 물리 상호작용의 분해
+
+> *The physical interactions.* Split the Poisson interaction process of the $(N+1)$-spin system
+> according to the number of indices equal to $N+1$. Terms with no new index have mean $\rho_N$.
+> Terms with exactly one new index have mean $\alpha p(N/(N+1))^{p-1}=\alpha p+O(N^{-1})$; by
+> permutation invariance we may place the new input last. Their other indices are independent
+> uniform indices in $[N]$, and their interaction functions retain the prescribed law. Terms with
+> at least two new indices have total mean $O(N^{-1})$. Meanwhile, the $N$-spin system can be
+> obtained from the same reservoir by adding a Poisson number of old interactions of mean
+> $$\alpha N-\rho_N=\alpha(p-1)+O(N^{-1}).$$
+> These quantities are nonnegative for all sufficiently large $N$.
+
+### 해석과 검증
+
+$(N+1)$ 스핀계의 clause는 $\mathrm{Pois}(\alpha(N+1))$개이고 각 자리는 $[N+1]$에서 복원 추출이므로,
+"새 자리 $N+1$이 몇 번 나오는가"는 $\mathrm{Bin}(p,\frac1{N+1})$입니다. Poisson 분할(thinning)로
+개수별 과정이 독립 Poisson이 됩니다.
+
+- 새 자리 0번: $\alpha(N+1)\bigl(\frac N{N+1}\bigr)^p=\rho_N$. ✓ 이 clause들의 자리는 $[N]$에서
+  균등 (조건부) — 저장소의 clause.
+- 새 자리 정확히 1번: $\alpha(N+1)\cdot p\cdot\frac1{N+1}\bigl(\frac N{N+1}\bigr)^{p-1}
+  =\alpha p\bigl(\frac N{N+1}\bigr)^{p-1}=\alpha p+O(N^{-1})$. ✓ 순열 불변성으로 새 스핀을
+  마지막 자리로 옮겨도 $\theta$의 법칙이 같습니다 — 이것이 (5.6)의 꼴입니다.
+- 2번 이상: $\alpha(N+1)\bigl[1-(\tfrac N{N+1})^p-\tfrac p{N+1}(\tfrac N{N+1})^{p-1}\bigr]
+  \approx\alpha\binom p2\frac1{N+1}=O(N^{-1})$. ✓
+- $N$ 스핀계: $\mathrm{Pois}(\alpha N)=\mathrm{Pois}(\rho_N)+\mathrm{Pois}(\alpha N-\rho_N)$로
+  쪼개면 저장소 + clause 추가.
+  $\alpha N-\rho_N=\alpha N\bigl[1-(\tfrac N{N+1})^{p-1}\bigr]=\alpha(p-1)+O(N^{-1})$. ✓
+
+**검토 메모.** $\rho_N=\alpha N(\frac N{N+1})^{p-1}$이므로 $\alpha N-\rho_N\ge0$은 **모든** $N\ge1$에서
+성립합니다. 논문의 "for all sufficiently large $N$"는 조심스러운 표현일 뿐 틀린 것은 아닙니다.
+
+### 수치 확인 ($\alpha=1.3$)
+
+| $p$ | $N$ | $\rho_N$ | $\alpha N-\rho_N$ (→$\alpha(p-1)$) | 새 자리 1번 평균 (→$\alpha p$) | 2번 이상 평균 |
+|---|---|---|---|---|---|
+| 2 | 10 | 11.818 | 1.1818 (1.3) | 2.3636 (2.6) | $1.2\times10^{-1}$ |
+| 2 | 1000 | 1298.70 | 1.2987 | 2.5974 | $1.3\times10^{-3}$ |
+| 2 | 10000 | 12998.70 | 1.29987 | 2.59974 | $1.3\times10^{-4}$ |
+| 4 | 10 | 9.767 | 3.2329 (3.9) | 3.9068 (5.2) | $6.3\times10^{-1}$ |
+| 4 | 1000 | 1296.11 | 3.8922 | 5.1844 | $7.8\times10^{-3}$ |
+| 4 | 10000 | 12996.10 | 3.89922 | 5.19844 | $7.8\times10^{-4}$ |
+
+차이가 모두 $O(1/N)$로 줄어듭니다 (2번 이상 평균 $\approx\alpha\binom p2/N$). ✓
+
+### 물리적 의미
+
+희석 그래프에서 새 스핀의 차수는 $\mathrm{Pois}(\alpha p)$이고, 두 번 이상 같은 clause에 들어가는
+"짧은 고리"는 $O(1/N)$로 드뭅니다. **국소적으로 나무 같다(locally tree-like)**는 Bethe 근사의
+전제가 바로 이 계산입니다.
+
+---
+
+## 문단 7. 증명 ② 섭동의 결합(coupling)
+
+> *The perturbations.* The old-site perturbation count in the $(N+1)$-spin system has total mean
+> $s_{N+1}N/(N+1)$, and the new-site count has mean $s_{N+1}/(N+1)$. Couple these processes to the
+> reservoir perturbations using common Poisson points. The expected number of unmatched factors is
+> at most
+> $$|s_{N+1}-s_N|+2s_{N+1}/(N+1)=O(N^{-1/4}).$$
+> Deleting or adding a perturbation changes the root logarithm by at most $\log2$; an interaction
+> changes it by at most $B$. An unused auxiliary variable can simply be integrated out with its
+> prior, so these comparisons remain valid when the number of auxiliary variables changes.
+
+### 해석과 검증
+
+- $(N+1)$ 스핀계의 섭동은 $\mathrm{Pois}(s_{N+1})$개, 자리는 $[N+1]$ 균등. 옛 자리 $[N]$에 떨어지는 것은
+  평균 $s_{N+1}\frac N{N+1}$, 새 자리는 $\frac{s_{N+1}}{N+1}$. ✓ (종류 $\nu$ 비율은 그대로 $c_\nu$.)
+- 저장소와 $N$ 스핀계는 평균 $s_N$으로 **같은** 섭동을 씁니다. 옛 자리 과정 (평균
+  $s_{N+1}\frac N{N+1}$)과 저장소 과정 (평균 $s_N$)을 공통 Poisson 점으로 결합하면, 어긋난 점의 평균
+  개수는 $|s_{N+1}\frac N{N+1}-s_N|\le|s_{N+1}-s_N|+\frac{s_{N+1}}{N+1}$. 새 자리 섭동은 모두
+  어긋난 것으로 셉니다: $+\frac{s_{N+1}}{N+1}$. 합이 논문의 한계. ✓
+- 크기: $s_{N+1}-s_N\approx\frac34N^{-1/4}$, $\frac{s_{N+1}}{N+1}\approx N^{-1/4}$. ✓
+- 하나 지우거나 더하면 뿌리 로그는 $\le\log2$ (5.2)만큼, clause 하나는 $\le B$만큼 변합니다
+  (Lemma 3.1 단조성). 보조 변수 개수가 달라져도, 쓰이지 않는 변수는 사전확률로 적분해 없애면
+  power mean이 바뀌지 않습니다 (상수의 power mean = 상수). ✓
+
+### 수치 확인
+
+| $N$ | 실제 어긋남 평균 | 논문 한계 | $N^{-1/4}$ |
+|---|---|---|---|
+| 10 | 0.682 | 1.515 | 0.562 |
+| 100 | 0.394 | 0.868 | 0.316 |
+| 1000 | 0.222 | 0.489 | 0.178 |
+| 10000 | 0.125 | 0.275 | 0.100 |
+
+두 값 모두 $N^{-1/4}$에 비례해 줄어듭니다. ✓
+
+### 물리적 의미 — 왜 $s_N=N^{3/4}$인가
+
+섭동 개수는 두 요구 사이에서 정해집니다. (i) $s_N/N\to0$: pressure 밀도를 바꾸지 않음 (5.3).
+(ii) $s_{N+1}-s_N\to0$이고 $s_N/N\to0$: 증분 $\Delta_N$을 바꾸지 않음 (여기). (iii) $s_N\to\infty$:
+6.2절에서 섭동 "점수"가 집중하려면 섭동이 충분히 많아야 합니다. $N^{3/4}$는 이 셋을 모두
+만족하는 편리한 선택입니다 ($N^{\gamma}$, $0<\gamma<1$이면 (i),(ii)는 성립; (iii)의 정량적 요구는
+6.2절에서 확인합니다).
+
+---
+
+## 문단 8. 증명 ③ 증분 식
+
+> *The increment.* We may consequently discard the repeated-new-index interactions, match the
+> perturbations, and replace the two insertion count means by their limits at a total expected
+> cost $O(N^{-1/4})$. Summing over the new spin gives $2A_{\rm s}$, while the old-system correction
+> gives $A_{\rm b}$. The factor $2$ supplies the term $\log2$ in the increment. The insertion
+> identity for the power means then proves (5.5). Finally,
+> $$|\log Y_{0,\rm s}|\le H+BK_{\rm s},\qquad|\log Y_{0,\rm b}|\le BK_{\rm b}.$$
+> Together with the coupling estimate this bounds the increments for large $N$; increasing the
+> constant covers the remaining sizes. All estimates are uniform in $L$ and $\mathbf u$.
+
+### 해석과 검증
+
+1. **비용 정리**: (a) 2번 이상 새 자리 clause 버림: 평균 $O(N^{-1})$개 × $B$. (b) 섭동 결합:
+   $O(N^{-1/4})$개 × $\log2$. (c) 삽입 개수 평균을 $\alpha p(\frac N{N+1})^{p-1}\to\alpha p$,
+   $\alpha N-\rho_N\to\alpha(p-1)$으로 바꾸기: 두 Poisson의 결합으로 어긋남 $O(N^{-1})$개 × $B$.
+   합 $O(N^{-1/4})$. ✓ 각 비용은 "개수 × 한 개당 한계"로, 개수에 대해 조건부로 Lemma 3.1의 단조성을
+   쓰면 됩니다.
+2. **$N+1$ 쪽**: 남은 $(N+1)$ 스핀계 = 저장소 × (새 스핀 $\varepsilon$과 그 clause들, 장 $h\varepsilon$).
+   $\varepsilon$에 대해 합하면 스핀 가중치에
+   $\sum_\varepsilon e^{h\varepsilon+\sum_j\theta_j(\cdot,\varepsilon)}=2A_{\rm s}(\sigma)$를 곱한 것.
+   Lemma 3.1: 뿌리 로그 증분 $=\log Y_0(2A_{\rm s})=\log2+\log Y_{0,\rm s}$ (동차성). ✓
+3. **$N$ 쪽**: 저장소 × $A_{\rm b}$ ⇒ 증분 $\log Y_{0,\rm b}$. ✓
+4. 빼면 (5.5). ✓
+5. **한계**: $e^{-H-BK_{\rm s}}\le A_{\rm s}\le e^{H+BK_{\rm s}}$, 단조성으로 $Y_{0,\rm s}$도 같은 구간. ✓
+   $\mathbb E[H+BK_{\rm s}]=H+B\alpha p$이므로 $|\Delta_N|\le\log2+H+B\alpha(2p-1)+O(N^{-1/4})$.
+   작은 $N$은 상수를 키워서 처리 ($|\Delta_N|\le|P_{N+1}|+|P_N|$이 각 $N$마다 유한). ✓
+6. 어떤 단계도 $L$, $\mathbf u$에 의존하지 않습니다 ((5.2)의 한계와 Lemma 3.1만 사용). ✓
+
+**검토 메모.** (5.5)의 $Y_{0,\rm s}$, $Y_{0,\rm b}$는 **같은 저장소의 기울인 커널**로 계산됩니다.
+그래서 6–8장의 정보(저장소 나무의 구조)가 두 항에 동시에 적용됩니다. 이것이 ASS 비교의 요점이며,
+두 계를 따로 다루면 생기지 않는 상쇄가 여기서 생깁니다.
+
+---
+
+## 문단 9. 이후의 약속
+
+> In the rest of the lower-bound proof, all spin trees are sampled from this reservoir using its
+> tilted auxiliary kernels and its terminal Gibbs kernel. The reservoir retains an independent
+> Poisson interaction process of mean $O(N)$ and $N$ independent bounded fields. Thus the
+> concentration argument applies to its slightly modified interaction mean as well.
+
+### 해석
+
+- 6–8장의 모든 "나무" $\mathcal T$는 **저장소**에서 뽑습니다: 깊이 $1..r$은 기울인 보조 커널
+  (3.2), 깊이 $L$은 Gibbs 커널.
+- 저장소는 clause 평균이 $\alpha N$ 대신 $\rho_N=\alpha N+O(1)$인 것만 다르므로, 6.2절의 집중
+  논증 (clause 하나나 장 하나를 바꿀 때 유계 차분 → Efron–Stein/Poisson 집중)이 그대로 적용됩니다.
+
+### 물리적 의미
+
+ASS 증분에 쓰이는 "cavity 메시지"는 모두 저장소의 실제 Gibbs 측도에서 나옵니다. 남은 장들의 임무는
+이 측도가 (i) Ghirlanda–Guerra 류 항등식을 만족하고 (6장), (ii) 서로 다른 자리의 스핀이 상태 안에서
+상관이 사라지며 (7장), (iii) 따라서 독립 위계 메시지로 바꿀 수 있음 (8장)을 보이는 것입니다.
+
+---
+
+## 요약
+
+- ASS 틀: $\liminf F_N\ge\liminf\Delta_N$, 증분을 공통 저장소로 표현.
+- 저장소에 $s_N=N^{3/4}$개의 유계 한-자리 섭동 $\psi_\nu$를 넣고, 섭동별 보조 변수로 $L$단 위계를 만듦.
+  pressure 변화 $\le s_N\log2=o(N)$ (5.3).
+- Lemma 5.1: $\Delta_N=\log2+\mathbb E\log Y_{0,\rm s}-\mathbb E\log Y_{0,\rm b}+o(1)$, site 삽입은
+  $\mathrm{Pois}(\alpha p)$개, bond 삽입은 $\mathrm{Pois}(\alpha(p-1))$개 clause. 오차는 $L,\mathbf u$에 균등.
+- Poisson 분할의 평균, $\alpha N-\rho_N$, 섭동 어긋남 $O(N^{-1/4})$를 수치로 확인했습니다.
+- 아래쪽 한계는 (2.3), (2.4)를 쓰지 않고, 유계·순열 불변만 씁니다.
+
+**다음 절 예고**: 6.1절에서 섭동 인자 $\psi_\nu$의 구체적인 족(family)을 정의합니다.

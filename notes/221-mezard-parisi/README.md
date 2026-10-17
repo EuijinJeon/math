@@ -8,7 +8,7 @@
 | 절 | 파일 | 상태 |
 |---|---|---|
 | 4 The interpolation upper bound | [04-interpolation-upper-bound.md](04-interpolation-upper-bound.md) | 완료 |
-| 5 A perturbed cavity reservoir | [05-cavity-reservoir.md](05-cavity-reservoir.md) | 작업 중 (문단 1–5) |
+| 5 A perturbed cavity reservoir | [05-cavity-reservoir.md](05-cavity-reservoir.md) | 완료 |
 | 6.1–6.5 Perturbations and identities | — | 미착수 |
 | 7.1–7.4 Decorrelation | — | 미착수 |
 | 8.1–8.3 Independent messages and comparison | — | 미착수 |
