@@ -13,7 +13,7 @@
 | 6.2 Concentration of each perturbation score | [06-2-score-concentration.md](06-2-score-concentration.md) | 완료 |
 | 6.3 One sequence for low increments | [06-3-parameter-selection.md](06-3-parameter-selection.md) | 완료 |
 | 6.4 Poisson insertion and analytic extraction | [06-4-palm-analytic.md](06-4-palm-analytic.md) | 완료 |
-| 6.5 Prescribing the colored tree | — | 미착수 |
+| 6.5 Prescribing the colored tree | [06-5-prescribed-trees.md](06-5-prescribed-trees.md) | 작업 중 (문단 1–3) |
 | 7.1–7.4 Decorrelation | — | 미착수 |
 | 8.1–8.3 Independent messages and comparison | — | 미착수 |
 | 9 Normalization, truncation, completion | — | 미착수 |
