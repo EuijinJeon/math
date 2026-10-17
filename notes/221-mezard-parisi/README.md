@@ -18,6 +18,8 @@
 | 7.2 Conditional covariance and continuity in depth | [07-2-conditional-covariance.md](07-2-conditional-covariance.md) | 완료 |
 | 7.3 Conditional decorrelation | [07-3-conditional-decorrelation.md](07-3-conditional-decorrelation.md) | 완료 |
 | 7.4 Concentration of every multioverlap | [07-4-multioverlap-concentration.md](07-4-multioverlap-concentration.md) | 완료 |
-| 8.1–8.3 Independent messages and comparison | — | 미착수 |
+| 8 도입 + 8.1 Encoding a single-site tree | [08-1-encoding.md](08-1-encoding.md) | 완료 |
+| 8.2 From multioverlaps to spin patterns | — | 미착수 |
+| 8.3 Comparison of the insertion logarithms | — | 미착수 |
 | 9 Normalization, truncation, completion | — | 미착수 |
 | 10 Named models and zero temperature | — | 미착수 |
