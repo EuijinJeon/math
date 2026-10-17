@@ -7,7 +7,7 @@
 
 | 절 | 파일 | 상태 |
 |---|---|---|
-| 4 The interpolation upper bound | — | 미착수 |
+| 4 The interpolation upper bound | [04-interpolation-upper-bound.md](04-interpolation-upper-bound.md) | 작업 중 (문단 1–4) |
 | 5 A perturbed cavity reservoir | — | 미착수 |
 | 6.1–6.5 Perturbations and identities | — | 미착수 |
 | 7.1–7.4 Decorrelation | — | 미착수 |
