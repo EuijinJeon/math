@@ -12,7 +12,7 @@
 | 6 도입 + 6.1 The perturbation family | [06-1-perturbation-family.md](06-1-perturbation-family.md) | 완료 |
 | 6.2 Concentration of each perturbation score | [06-2-score-concentration.md](06-2-score-concentration.md) | 완료 |
 | 6.3 One sequence for low increments | [06-3-parameter-selection.md](06-3-parameter-selection.md) | 완료 |
-| 6.4 Poisson insertion and analytic extraction | — | 미착수 |
+| 6.4 Poisson insertion and analytic extraction | [06-4-palm-analytic.md](06-4-palm-analytic.md) | 완료 |
 | 6.5 Prescribing the colored tree | — | 미착수 |
 | 7.1–7.4 Decorrelation | — | 미착수 |
 | 8.1–8.3 Independent messages and comparison | — | 미착수 |
