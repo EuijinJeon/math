@@ -164,4 +164,136 @@ $$\frac1{|I|}\int_I\mathbb E\langle|D-\langle D\rangle|\rangle du\le\frac1{|I|}\
 **판단 메모.** 상수가 $1/|I_\nu|=j^j$와 $1/m_1=L$에 의존하므로 $\nu$와 $L$에 대해 균등하지 않습니다.
 Lemma 6.1이 명시한 대로이며, 이후 극한은 항상 "$L$, $\nu$ 고정 후 $N\to\infty$" 순서입니다.
 
-> (작업 중 — 다음 문단부터 이어짐)
+---
+
+## 문단 7. 뿌리 평균의 요동: 볼록 함수 $G$와 (6.11)
+
+> *Fluctuations of the root mean.* It remains to concentrate $X_0'$ over the root. By (6.8), the
+> random function $G(u)=X_0(u)+2nu^2$ is convex on $J_\nu$. Uniformly for $u\in J_\nu$ and all the
+> other parameters,
+> $$\mathrm{Var}(G(u))\leq C_\nu N,\qquad|\mathbb E_{\mathbf u}G'(u)|\leq C_\nu\lambda_\nu.\tag{6.11}$$
+> To prove the first estimate, condition on the physical and total perturbation counts.
+> Conditional on the latter count, its types and sites are independent labels; changing a label
+> replaces a single bounded factor. Apply the Efron–Stein variance inequality [EfronStein]
+> $\mathrm{Var}Z\le\frac12\sum_j\mathbb E(Z-Z^{(j)})^2$, where $Z^{(j)}$ is obtained by independently
+> resampling the $j$th input. For completeness, with independent inputs $X_1,\ldots,X_k$, let $E_j$
+> integrate only $X_j$ and let $\mathscr G_j=\sigma(X_1,\ldots,X_j)$. The Doob differences are
+> $D_j=\mathbb E[Z-E_jZ\mid\mathscr G_j]$. Orthogonality and Jensen give
+> $$\mathrm{Var}Z=\sum_j\mathbb ED_j^2\le\sum_j\mathbb E(Z-E_jZ)^2=\frac12\sum_j\mathbb E(Z-Z^{(j)})^2.$$
+> This independent-input decomposition requires neither identical laws nor a symmetric statistic;
+> see Efron–Stein [Section 2]. Resampling one interaction, field, or perturbation term changes $X_0$
+> by a bounded amount: this is immediate for the spin weights and is preserved by each power mean.
+> When a term is removed, its unused independent mark variables can be integrated out, so the same
+> assertion holds for addition or deletion of a term. Conditional variances are therefore bounded by
+> a constant times the number of root variables. Conditional means are Lipschitz functions of the
+> counts, with bounded Lipschitz constants. If $Q,Q'$ are independent copies of a Poisson variable
+> and $b$ is $C$-Lipschitz, then
+> $$\mathrm{Var}(b(Q))=\tfrac12\mathbb E(b(Q)-b(Q'))^2\leq C^2\mathrm{Var}(Q).$$
+> Applying this to the independent counts completes the $O(N)$ estimate. The correction $2nu^2$
+> obeys the same estimates. The derivative bound in (6.11) follows directly from (6.6).
+
+### 해석과 검증
+
+**볼록성.** $G''=X_0''+4n\ge m_1\mathrm{Var}\ge0$ ((6.8)). ✓ 무작위 함수 $G$가 매 실현에서 볼록이므로
+"볼록 함수의 값이 집중하면 도함수도 (거의 모든 점에서) 집중"이라는 GG의 고전 논법을 쓸 수 있습니다.
+
+**Efron–Stein 증명 확인.**
+- $D_j=\mathbb E[Z\mid\mathscr G_j]-\mathbb E[Z\mid\mathscr G_{j-1}]$ (Doob 마팅게일 차분). 입력이 독립이므로
+  $\mathbb E[E_jZ\mid\mathscr G_j]=\mathbb E[Z\mid\mathscr G_{j-1}]$이고, 따라서 $D_j=\mathbb E[Z-E_jZ\mid\mathscr G_j]$. ✓
+- $\mathrm{Var}Z=\sum_j\mathbb ED_j^2$ (직교성) ✓, 조건부 Jensen $D_j^2\le\mathbb E[(Z-E_jZ)^2\mid\mathscr G_j]$ ✓.
+- $\mathbb E(Z-E_jZ)^2=\mathbb E\,\mathrm{Var}_j(Z)=\frac12\mathbb E(Z-Z^{(j)})^2$ (같은 조건부 법칙의 두 독립 표본). ✓
+
+**입력 하나를 바꾸면 유계 변화.** clause 하나: $\le2B$; 장 하나: $\le2H$; 섭동 항 하나: $\le2\log2$
+(Lemma 3.1의 단조성으로 power mean을 지나도 보존). $2nu^2$ 항은 $n$을 1 바꾸면 $2u^2\le1/2$만큼. ✓
+
+**전체 분산.** $\mathrm{Var}G=\mathbb E\mathrm{Var}(G\mid\text{counts})+\mathrm{Var}\,\mathbb E(G\mid\text{counts})$.
+- 첫 항 $\le C\,\mathbb E[M+N+n_{\rm tot}]=O(N)$ (clause 수 $M$의 평균 $O(N)$, 장 $N$개, 섭동 $s_N$개). ✓
+- 둘째 항: 조건부 평균은 각 개수에 대해 Lipschitz (하나 더하면 유계 변화). Poisson 개수들이 독립이므로
+  Efron–Stein을 개수에 다시 적용하고, 각 개수에는 Lipschitz 보조정리
+  $\mathrm{Var}b(Q)=\frac12\mathbb E(b(Q)-b(Q'))^2\le\frac{C^2}2\mathbb E(Q-Q')^2=C^2\mathrm{Var}Q$ ✓를 씁니다.
+  $\mathrm{Var}M=O(N)$, $\mathrm{Var}n_{\rm tot}=s_N$. 합 $O(N)$. ✓
+
+**도함수 한계.** $G'=X_0'+4nu$, $|X_0'|\le2n$, $|4nu|\le2n$ ⇒ $|\mathbb EG'|\le4\lambda_\nu$. ✓
+
+**검토 메모.** 섭동 "label"(종류·자리)은 총 개수에 조건부로 i.i.d.이고, 각 종류별 개수가
+$\mathrm{Pois}(c_\nu s_N)$로 독립인 것과 같은 법칙입니다 (Poisson 분할의 역). 논문이 "condition on the total
+perturbation count"라고 쓴 것은 이 동치를 쓴 것입니다. ✓
+
+### 물리적 의미
+
+$\mathrm{Var}(\log Z)=O(N)$은 자유에너지의 **self-averaging**입니다 (상대 요동 $N^{-1/2}$). 희석 모형에서는
+Gaussian 집중 대신 "clause 하나 = 유계 영향"이라는 국소성만으로 충분합니다.
+
+---
+
+## 문단 8. 볼록 함수에서 도함수로: (6.12)와 결론
+
+> *Passing from a convex function to its derivative.* Put $\bar G=\mathbb E_{\mathbf u}G$ and
+> $Z=G-\bar G$. If $u\pm\rho$ lie in $J_\nu$, forward and backward difference quotients imply
+> $$|G'(u)-\bar G'(u)|\leq\frac{|Z(u-\rho)|+2|Z(u)|+|Z(u+\rho)|}{\rho}+\bar G'(u+\rho)-\bar G'(u-\rho).$$
+> The monotonicity of $\bar G'$ gives
+> $$\int_a^b[\bar G'(u+\rho)-\bar G'(u-\rho)]\,du\leq2\rho[\bar G'(b+\rho)-\bar G'(a-\rho)].$$
+> Together with (6.11), this proves
+> $$\frac1{|I_\nu|}\int_{I_\nu}\mathbb E_{\mathbf u}|G'(u)-\mathbb E_{\mathbf u}G'(u)|\,du\leq C_\nu\left(\frac{\sqrt N}{\rho}+\frac{\rho\lambda_\nu}{|I_\nu|}\right).\tag{6.12}$$
+> For all sufficiently large $N$, take $\rho=N^{-1/8}$, which lies within the fixed neighborhood
+> margin. After division by $\lambda_\nu=c_\nu N^{3/4}$, both terms tend to zero. Removing the
+> correction to $G'$ costs at most $C_\nu\mathbb E|n-\lambda_\nu|/\lambda_\nu\leq C_\nu\lambda_\nu^{-1/2}$.
+> Thus the root contribution to (6.4) tends to zero. Combining it with (6.10) proves the result
+> after integration over $u_\nu$. All estimates are uniform in the other parameters, so their
+> integration against the remaining product measure proves (6.5).
+
+### 검증
+
+**차분 몫 부등식.** $G$, $\bar G$ 모두 볼록 ($\bar G$는 볼록 함수의 평균). 볼록성:
+$\frac{G(u)-G(u-\rho)}\rho\le G'(u)\le\frac{G(u+\rho)-G(u)}\rho$, $\bar G$도 같음.
+- 위쪽: $G'(u)-\bar G'(u)\le\frac{Z(u+\rho)-Z(u)}\rho+\Bigl[\frac{\bar G(u+\rho)-\bar G(u)}\rho-\bar G'(u)\Bigr]
+  \le\frac{|Z(u+\rho)|+|Z(u)|}\rho+\bar G'(u+\rho)-\bar G'(u)$.
+- 아래쪽: $\bar G'(u)-G'(u)\le\frac{|Z(u)|+|Z(u-\rho)|}\rho+\bar G'(u)-\bar G'(u-\rho)$.
+- 두 경우 모두 논문 우변 이하. ✓
+
+**적분.** $\int_a^b\bar G'(u+\rho)du-\int_a^b\bar G'(u-\rho)du=\int_{b-\rho}^{b+\rho}\bar G'-\int_{a-\rho}^{a+\rho}\bar G'
+\le2\rho\bar G'(b+\rho)-2\rho\bar G'(a-\rho)$ ($\bar G'$ 단조 증가). ✓
+
+**(6.12).** $\mathbb E|Z(u)|\le\sqrt{\mathrm{Var}G}\le\sqrt{C_\nu N}$ ⇒ 첫 항 $\le4\sqrt{C_\nu N}/\rho$.
+둘째 항 $\le2\rho\cdot2C_\nu\lambda_\nu/|I_\nu|$ ((6.11)의 도함수 한계). ✓
+
+**$\rho=N^{-1/8}$.** $\lambda_\nu$로 나누면 $\frac{\sqrt N}{\rho\lambda_\nu}\propto N^{1/2+1/8-3/4}=N^{-1/8}\to0$,
+$\frac\rho{|I_\nu|}=j^jN^{-1/8}\to0$. ✓ 큰 $N$에서 $I_\nu\pm\rho\subset J_\nu$. ✓
+
+**보정 제거.** $G'-\mathbb EG'=(X_0'-\mathbb EX_0')+4u(n-\lambda_\nu)$, $\mathbb E|n-\lambda|\le\sqrt\lambda$ ⇒
+비용 $\le2\lambda^{-1/2}$ (나눈 뒤). ✓
+
+**합치기.** $\mathbb E\langle|D-\mathbb E\langle D\rangle|\rangle\le\mathbb E\langle|D-\langle D\rangle|\rangle+\mathbb E|\langle D\rangle-\mathbb E\langle D\rangle|$,
+첫 항은 (6.10), 둘째 항은 $X_0'=\langle D\rangle$ (6.7)이므로 위 결과. $u_\nu$에 대해 구간 평균,
+나머지 좌표는 균등 한계이므로 $\pi$로 적분. ✓
+
+**지수 정리.** $s_N=N^{\gamma}$로 일반화하면 첫 항 $N^{1/2}/(\rho N^\gamma)$, 둘째 항 $\rho$이므로 최적
+$\rho=N^{(1/2-\gamma)/2}$, 오차 $N^{(1/2-\gamma)/2}$. 따라서 **$\gamma>1/2$가 필요**합니다. 5장 문단 7에서
+남겨 둔 질문의 답: $s_N=N^{3/4}$는 $1/2<\gamma<1$ 조건을 만족합니다.
+
+### 수치 확인
+
+무작위 볼록 함수 $G,\bar G$ (서로 다른 $\log\cosh$ 혼합 + 2차항) 2000쌍, 무작위 $u$, $\rho\in(0.01,0.3)$에서
+차분 몫 부등식의 (좌변 − 우변) 최댓값 $=-0.82<0$. ✓
+
+### 물리적 의미
+
+GG 논법의 핵심 문장 "자유에너지가 self-averaging하고 볼록하면 내부 에너지도 거의 모든 온도에서
+self-averaging"을 정확히 재현했습니다. 열적 부분 (6.10)은 **비열의 유한성**과 같은 논리 (곡률 적분 =
+도함수의 유계 변화)이고, 무질서 부분 (6.12)는 볼록 함수의 도함수가 평균 주위의 작은 요동으로만
+움직인다는 사실입니다. 결과적으로 $\langle|D_\nu-\mathbb E\langle D_\nu\rangle|\rangle=o(s_N)$: 섭동 점수는
+replica에 무관한 상수입니다. 다음 절들은 이 집중을 "anchor replica의 점수는 다른 replica들과
+상관이 없다"는 형태로 바꿉니다.
+
+---
+
+## 요약
+
+- 점수 $D_\nu=\partial_u\log(\text{weight})$의 정규화 평균 절대 편차 $e_{\nu,N}$을 정의 (6.4).
+- 열적 부분: $X_0''=\langle\partial D\rangle+\sum_dm_d\langle(M_d-M_{d-1})^2\rangle\ge m_1\mathrm{Var}-4n$ (6.8),
+  적분하면 $O(\lambda^{-1/2})$ (6.10). 깊이별 분산이 $m_d$로 가중되는 것을 수치로 확인.
+- 무질서 부분: $G=X_0+2nu^2$의 볼록성 + Efron–Stein $\mathrm{Var}G=O(N)$ + 차분 몫 (6.12), $\rho=N^{-1/8}$.
+- 결과 Lemma 6.1: $\int e_{\nu,N}\,d\pi\to0$. 상수는 $L$, $\nu$에 의존. $s_N=N^\gamma$에서 $\gamma>1/2$가 필요.
+
+**다음 절 예고**: 6.3절에서 낮은 cavity 증분과 모든 점수 집중, 모든 나무 모멘트의 수렴을 동시에
+만족하는 하나의 수열 $(N_j,\mathbf u_j)$를 고릅니다 (Lemma 6.2).
