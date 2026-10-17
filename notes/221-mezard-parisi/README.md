@@ -14,7 +14,10 @@
 | 6.3 One sequence for low increments | [06-3-parameter-selection.md](06-3-parameter-selection.md) | 완료 |
 | 6.4 Poisson insertion and analytic extraction | [06-4-palm-analytic.md](06-4-palm-analytic.md) | 완료 |
 | 6.5 Prescribing the colored tree | [06-5-prescribed-trees.md](06-5-prescribed-trees.md) | 완료 |
-| 7.1–7.4 Decorrelation | — | 미착수 |
+| 7 도입 + 7.1 Averages over depths | [07-1-depth-averages.md](07-1-depth-averages.md) | 완료 |
+| 7.2 Conditional covariance and continuity in depth | — | 미착수 |
+| 7.3 Conditional decorrelation | — | 미착수 |
+| 7.4 Concentration of every multioverlap | — | 미착수 |
 | 8.1–8.3 Independent messages and comparison | — | 미착수 |
 | 9 Normalization, truncation, completion | — | 미착수 |
 | 10 Named models and zero temperature | — | 미착수 |
