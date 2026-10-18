@@ -8,7 +8,7 @@
 | 절 | 파일 | 상태 |
 |---|---|---|
 | 1 Introduction | [01-introduction.md](01-introduction.md) | 완료 |
-| 2 The model + 2.1 The hierarchical cavity functional | — | 미착수 |
+| 2 The model + 2.1 The hierarchical cavity functional | [02-1-model-functional.md](02-1-model-functional.md) | 완료 |
 | 2.2 Proof strategy | — | 미착수 |
 | 3.1 Path kernels and insertions | — | 미착수 |
 | 3.2 The two expansion rules | — | 미착수 |
