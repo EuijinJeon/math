@@ -183,4 +183,84 @@ clause 하나를 넣으면 (i) 자유에너지가 $\log Y_0$만큼 바뀌고 —
 ($K^A$). 단순한 Gibbs 평균에서는 $\log\langle A\rangle$이지만, RSB에서는 상태마다 $\langle A\rangle_\alpha$를 $m$제곱으로 재가중하는
 $\log(\sum_\alpha W_\alpha\langle A\rangle_\alpha^m)^{1/m}$ 꼴이 됩니다. 이것이 Mézard–Parisi의 "reweighting" 항입니다.
 
-> (작업 중 — 다음 문단부터 이어짐)
+---
+
+## 문단 8. 새 변수를 쓰는 삽입
+
+> An insertion may use additional variables that were absent from the original model. Enlarge each path
+> kernel by their independent prior kernels before applying the lemma. The original backward logarithms do
+> not depend on these variables, so the original tilt leaves their conditional prior kernels unchanged.
+> Additional root variables remain quenched.
+
+### 해석
+
+예: 4장의 cavity 삽입은 새 메시지 라벨 $x$를, 6장의 섭동 삽입은 새 Rademacher 표시를 씁니다. 이 변수들을 사전 커널과 함께
+각 깊이에 미리 붙여 두면, 기존 $X_d$가 새 변수에 의존하지 않으므로 기울인 커널에서 새 변수의 조건부 법칙은 사전 그대로입니다.
+새 뿌리 변수 (새 clause의 $\theta$, 자리, 메시지 뿌리 측도 $\eta_0$)는 quenched — 로그 바깥에서 평균.
+4장 문단 6에서 "edge 증분 = $\log T_0V_{\rm e}$"를 이끌어 낸 것이 이 규칙입니다.
+
+---
+
+## 문단 9. 첫 변분 (3.6)
+
+> We will use differentiation of (3.3). For $A_{\boldsymbol t}=1+\sum_{j=1}^kt_jD_j$, where the real path
+> functions $D_j$ are bounded, differentiation on any real neighborhood where $A_{\boldsymbol t}$ is uniformly
+> positive gives
+> $$\partial_{t_j}\log Y_d=E^{A_{\boldsymbol t}}\left[\left.\frac{D_j}{A_{\boldsymbol t}}\right|\mathscr F_d\right].\tag{3.6}$$
+> The conditional expectation on the right follows one new path below the specified prefix. Indeed,
+> differentiating one power mean gives $\partial_{t_j}\log Y_{d-1}=K_d^{A_{\boldsymbol t}}\partial_{t_j}\log Y_d$, and the
+> terminal derivative is $D_j/A$.
+
+### 검증
+
+$\log Y_{d-1}=\frac1{m}\log K_de^{m\log Y_d}$ ⇒ $\partial\log Y_{d-1}=\frac{K_d[Y_d^m\partial\log Y_d]}{K_dY_d^m}=K_d^A[\partial\log Y_d]$ (3.4). ✓
+마지막: $\partial\log Y_L=\partial\log A=D_j/A$. ✓ 귀납으로 (3.6).
+
+**수치**: $t=0.3$에서 $\partial_t\log Y_0$의 유한 차분 $0.0570583098$, $E^A[D/A]$ (갱신 커널로 경로 하나) $0.0570583096$. ✓
+
+### 물리적 의미
+
+"미분 한 번 = 갱신된 계에서 replica 하나를 새로 뽑아 $D/A$를 잰다." SK에서 $\partial_\beta\log Z=\langle H\rangle$ (replica 하나)인
+것과 같고, 미분을 거듭하면 replica가 늘어나 나무가 자랍니다 (3.2절).
+
+---
+
+## 문단 10. 해석적 한계
+
+> *Analytic bounds.* The expressions are analytic on the complex domain $\sum_j|t_j|\|D_j\|_\infty<1$, with bounds
+> uniform over the kernels. On a smaller closed domain with this sum at most $\rho<1$, $A$ has argument bounded
+> by $\vartheta=\arcsin\rho<\pi/2$ and modulus between $1-\rho$ and $1+\rho$. If $Y_d$ has argument in
+> $[-\vartheta,\vartheta]$, then $K_dY_d^{m_d}$ has argument in $[-m_d\vartheta,m_d\vartheta]$, using the principal
+> powers. It is nonzero, and taking its $1/m_d$ power gives the same argument bound for $Y_{d-1}$. More
+> quantitatively, a lower modulus bound $a_d>0$ gives the lower bound $a_{d-1}=a_d\cos(m_d\vartheta)^{1/m_d}>0$,
+> whereas the upper modulus bound $1+\rho$ is preserved. These bounds justify integration of analytic
+> functions at each step and all subsequent differentiations. They also bound (3.5), its canceled versions
+> below, and their derivatives on smaller domains, uniformly over the kernels for fixed depth, exponents,
+> tree size, and bounds on the inserted functions.
+
+### 검증
+
+- $|tD|\le\rho$이면 $1+tD$는 원판 $\{|w-1|\le\rho\}$ 안. 그 원판의 편각 최댓값은 $\arcsin\rho$ (원점에서 그은 접선). ✓
+- $|\arg Y_d|\le\vartheta$ ⇒ $|\arg Y_d^{m}|\le m\vartheta<\pi/2$; 확률 평균 (볼록 결합)은 같은 부채꼴 안, 원점이 아님. ✓
+  $1/m$제곱 ⇒ 편각 $\le\vartheta$. ✓
+- 하한: 부채꼴 $|\arg|\le m\vartheta$ 안의 점들의 평균은 실수부가 $\ge\cos(m\vartheta)\min|Y_d^m|\ge\cos(m\vartheta)a_d^m$ ⇒
+  $|Y_{d-1}|\ge a_d\cos(m\vartheta)^{1/m}$. ✓ 상한 $1+\rho$는 삼각부등식으로 보존. ✓
+
+**수치**: 깊이 3 이진 나무, 무작위 커널, $m=(0.3,0.7,1)$, 무작위 복소 $t$ ($|t|=\rho\in(0.1,0.95)$) 2000회에서
+$\max|\arg Y_0|/\arcsin\rho=0.79\le1$. ✓
+
+### 물리적 의미
+
+이 한계 덕분에 삽입 함수가 $t$에 대해 **커널에 균등하게 해석적**입니다. 6.4절 Lemma 6.4 ($H(1/j)\le2Cj^{-j}$ ⇒ $H\equiv0$)는
+이 균등 해석성 없이는 성립하지 않습니다 (6.4절 검토 메모). $N$이 커져도 (커널이 바뀌어도) 한계가 같다는 점이 핵심입니다.
+
+---
+
+## 요약
+
+- 경로 = 뿌리 (quenched) → 보조 변수 깊이들 → 스핀; 나무 = replica 계보, 홑자식 꼭짓점도 유지, 사영 일관성.
+- 기울인 커널 $K_d\propto P_de^{m_dX_d}$ (3.2) = Monasson $Z^m$ 재가중.
+- Lemma 3.1: 삽입 $A$의 뿌리 로그 변화 $=\log Y_0$, 갱신 커널 (3.4), 나무 밀도 $W=\prod A^a\prod Y_\beta^{\gamma_\beta}$ (3.5). 수치로 정확히 확인.
+- (3.6): 미분 한 번 = 새 replica 경로 하나. 복소 영역의 균등 해석적 한계.
+
+**다음 절 예고**: 3.2절에서 미분 규칙을 나무 위에서 반복해 로그 전개 (Lemma 3.2)와 canceled-anchor 전개 (Lemma 3.3)를 얻습니다.
