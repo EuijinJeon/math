@@ -2,11 +2,18 @@
 
 원문: `preprints/The-Mezard-Parisi-formula-for-diluted-spin-glasses-September-23-2026/paper.pdf`
 
-- 1–3장: 이전 대화에서 다룸 (요약은 `PROMPT.md`의 "지금까지의 맥락").
+- 1–3장: 이 저장소에 해설 추가 (아래 목록). 요약은 `PROMPT.md`의 "지금까지의 맥락"에도 있음.
 - 4–10장: **완료**. 작업 지시문은 `PROMPT.md`.
 
 | 절 | 파일 | 상태 |
 |---|---|---|
+| 1 Introduction | [01-introduction.md](01-introduction.md) | 완료 |
+| 2 The model + 2.1 The hierarchical cavity functional | — | 미착수 |
+| 2.2 Proof strategy | — | 미착수 |
+| 3.1 Path kernels and insertions | — | 미착수 |
+| 3.2 The two expansion rules | — | 미착수 |
+| 3.3 Sums of extension coefficients | — | 미착수 |
+| 3.4 The distribution of branching depths | — | 미착수 |
 | 4 The interpolation upper bound | [04-interpolation-upper-bound.md](04-interpolation-upper-bound.md) | 완료 |
 | 5 A perturbed cavity reservoir | [05-cavity-reservoir.md](05-cavity-reservoir.md) | 완료 |
 | 6 도입 + 6.1 The perturbation family | [06-1-perturbation-family.md](06-1-perturbation-family.md) | 완료 |
