@@ -12,7 +12,7 @@
 | 2.2 Proof strategy | [02-2-proof-strategy.md](02-2-proof-strategy.md) | 완료 |
 | 3 도입 + 3.1 Path kernels and insertions | [03-1-path-kernels.md](03-1-path-kernels.md) | 완료 |
 | 3.2 The two expansion rules | [03-2-expansion-rules.md](03-2-expansion-rules.md) | 완료 |
-| 3.3 Sums of extension coefficients | — | 미착수 |
+| 3.3 Sums of extension coefficients | [03-3-coefficient-sums.md](03-3-coefficient-sums.md) | 완료 |
 | 3.4 The distribution of branching depths | — | 미착수 |
 | 4 The interpolation upper bound | [04-interpolation-upper-bound.md](04-interpolation-upper-bound.md) | 완료 |
 | 5 A perturbed cavity reservoir | [05-cavity-reservoir.md](05-cavity-reservoir.md) | 완료 |
