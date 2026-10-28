@@ -4,23 +4,36 @@
 (식 (6.3)–(6.12), Lemma 6.1). 앞 절 참조: (6.1), (6.2), (5.3), Lemma 3.1, (3.2).
 
 > **이 판의 읽는 법.** 원문 인용 바로 아래에 **문장별 풀이**를 두었습니다. 원문 문장(또는 한 덩어리)을 다시
-> 짧게 인용하고, 그 문장이 무슨 뜻인지, 그리고 원문이 생략한 중간 식을 바로 이어서 적었습니다. 검증(✓)과
-> 수치 확인은 그 뒤에 따로 둡니다.
+> 짧게 인용하고, 그 뜻과 원문이 생략한 중간 식을 바로 이어 적었습니다. 새 항이 나올 때마다 **🔭 물리** 줄에서
+> 그 항이 스핀 글라스 전체 계에서 무엇인지 (어떤 물리량, 어떤 상황인지) 적었습니다. 검증(✓)과 수치 확인은
+> 그 뒤에 따로 둡니다.
 
 ---
 
 ## 0. 이 절의 큰 그림 (원문에는 없는 안내)
 
-목표는 섭동 점수 $D_\nu$가 상수 $\mathbb E_{\mathbf u}\langle D_\nu\rangle$ 근처에 몰려 있다는 것입니다. 점수와 그 상수의
-차이는 두 조각으로 나뉩니다.
-$$D_\nu-\mathbb E\langle D_\nu\rangle=\underbrace{\bigl(D_\nu-\langle D_\nu\rangle\bigr)}_{\text{① 열적 요동: 뿌리를 고정하고 경로만 바꿀 때}}+\underbrace{\bigl(\langle D_\nu\rangle-\mathbb E\langle D_\nu\rangle\bigr)}_{\text{② 무질서 요동: 뿌리를 바꿀 때}}.$$
+### 무대: 지금 다루는 계
 
-| 조각 | 무엇이 흔들리나 | 쓰는 도구 | 문단 |
-|---|---|---|---|
-| ① | 같은 무질서에서 상태·배치를 다시 뽑을 때 | 자유에너지의 2차 도함수 = 분산 | 4–6 |
-| ② | 무질서 자체를 다시 뽑을 때 | 볼록 함수 + 값의 집중 ⇒ 도함수의 집중 | 7–8 |
+| 대상 | 스핀 글라스 언어 |
+|---|---|
+| 스핀 $\sigma\in\{\pm1\}^N$ | Ising 스핀 $N$개. 무작위 희석 그래프 위에서 $p$체 상호작용 |
+| 뿌리 (root) | **quenched 무질서**: 결합 $\theta_k$, 그래프 (clause의 자리), 외부장 $h_i$, 그리고 섭동의 개수·자리. 시료(sample) 하나를 정함 |
+| 보조 변수 (깊이 $1..L-1$) | 섭동이 가진 Rademacher "색". 기울인 커널로 뽑히면 **깊이별 상태 (cluster) 선택**에 해당 |
+| 기울인 경로 하나 | 상태를 위계대로 하나 고르고, 그 상태 안에서 스핀 배치를 하나 뽑은 것 = **replica 하나** |
+| $\langle\cdot\rangle$ | 그 시료에서의 열적 평균. RSB 언어로 $\sum_\alpha W_\alpha\langle\cdot\rangle_\alpha$ (상태 무게 × 상태 안 평균) |
+| $\mathbb E_{\mathbf u}$ | 시료 평균 (sample-to-sample 평균) |
 
-두 조각 모두 같은 함수 $X_0(u)$ (섭동된 계의 뿌리 로그 분배함수)를 통해 다룹니다. $X_0'(u)=\langle D_\nu\rangle$이기 때문입니다 ((6.7)).
+### 목표
+
+섭동의 **응답 관측량** $D_\nu$가 시료·상태·replica에 무관한 상수로 몰려 있음을 보입니다. 차이를 두 조각으로 나눕니다.
+$$D_\nu-\mathbb E\langle D_\nu\rangle=\underbrace{\bigl(D_\nu-\langle D_\nu\rangle\bigr)}_{\text{① 열적 요동}}+\underbrace{\bigl(\langle D_\nu\rangle-\mathbb E\langle D_\nu\rangle\bigr)}_{\text{② 시료 간 요동}}.$$
+
+| 조각 | 무엇이 흔들리나 | 쓰는 도구 | 물리적 원리 | 문단 |
+|---|---|---|---|---|
+| ① | 같은 시료에서 상태·배치를 다시 뽑을 때 | 자유에너지의 2차 도함수 = 분산 | 요동-응답 정리, 감수율 유한 | 4–6 |
+| ② | 시료 자체를 다시 뽑을 때 | 볼록 함수 + 값의 집중 ⇒ 도함수의 집중 | 자유에너지의 self-averaging | 7–8 |
+
+두 조각 모두 같은 함수 $X_0(u)$ (섭동된 시료의 자유에너지)로 다룹니다. $X_0'(u)=\langle D_\nu\rangle$이기 때문입니다 ((6.7)).
 
 ---
 
@@ -39,40 +52,52 @@ $$D_\nu-\mathbb E\langle D_\nu\rangle=\underbrace{\bigl(D_\nu-\langle D_\nu\rang
    $\psi_{\nu,q}=1+t_\nu g_q\sigma_{i_q}+u_\nu g_{0,q}S_{0,q}$를 곱합니다 ((6.2)). 그러므로 로그 가중치에는
    $\sum_q\log\psi_{\nu,q}$가 더해지고, 이것을 $u_\nu$로 미분하면
    $$\frac{\partial}{\partial u_\nu}\sum_q\log\psi_{\nu,q}=\sum_q\frac{g_{0,q}S_{0,q}}{\psi_{\nu,q}}=D_\nu .$$
-   즉 **$D_\nu$는 "로그 가중치의 $u_\nu$-도함수"**입니다. 원문에는 이 말이 없지만, 문단 4에서 정확히 이 사실을 씁니다.
-2. **"on a tilted path, including its terminal Gibbs configuration"**
-   $D_\nu$가 무엇에 의존하는지 말해 줍니다.
-   - 뿌리 변수: 개수 $n_\nu$, 자리 $i_q$ (그리고 나머지 무질서)
-   - 보조 변수: $g_q$, $g_{0,q}$는 깊이 $1..L-1$에 놓인 Rademacher 표시의 함수
-   - 마지막 스핀 배치: $\sigma_{i_q}$, 그리고 $S_0=\sigma_i$이면 $S_{0,q}$
+   즉 **$D_\nu$는 "로그 가중치의 $u_\nu$-도함수"**입니다.
 
-   따라서 $D_\nu$는 "기울인 경로 하나" (보조 변수들 + 마지막 스핀 배치)의 함수입니다.
+   🔭 **물리 — 섭동 인자 $\psi$의 각 항.** $\log\psi\approx t\,g\,\sigma_i+u\,g_0S_0$ (작은 세기에서)이므로 섭동은 해밀토니안에 한-체 항을 더한 것입니다.
+   | 항 | 스핀 글라스에서의 뜻 |
+   |---|---|
+   | $\sigma_{i_q}$ | 무작위로 고른 스핀 하나 (탐침이 닿는 자리) |
+   | $g_q=g(\epsilon)$ | 그 자리가 속한 **상태의 색** $\epsilon$에 따라 부호·크기가 정해지는 계수 |
+   | $t\,g\,\sigma_i$ | **상태마다 방향이 다른 약한 국소장** (세기 $t=1/j$). 같은 깊이-$d$ 상태 안에서는 같은 장, 다른 상태에서는 독립인 장 |
+   | $u\,g_0S_0$ | 응답을 재기 위한 아주 약한 시험 항 (세기 $u\sim j^{-j}$). $S_0=\sigma_i$이면 또 하나의 국소장, $S_0=1$이면 스핀과 무관한 **상태별 에너지 이동** (상태를 색에 따라 조금 더/덜 무겁게 함) |
+
+   🔭 **물리 — $D_\nu$.** $u$에 **켤레(conjugate)인 관측량**입니다. 장 $h$에 켤레인 것이 자화 $\sum_i\sigma_i$, 역온도에 켤레인 것이 에너지이듯이,
+   $D_\nu\approx\sum_qg_0(\epsilon_q)S_{0,q}$는 "탐침 자리들에서 **상태 색으로 가중한 자화**" (또는 $S_0=1$이면 상태 색의 합)입니다. 섭동 전체에
+   대한 계의 응답이고, 크기는 탐침 수 $\sim N^{3/4}$에 비례합니다.
+
+2. **"on a tilted path, including its terminal Gibbs configuration"**
+   $D_\nu$가 의존하는 것: 뿌리 (개수 $n_\nu$, 자리 $i_q$), 보조 변수 ($g_q$, $g_{0,q}$를 정하는 색), 마지막 스핀 배치 ($\sigma_{i_q}$, $S_{0,q}$).
+
+   🔭 **물리.** $D_\nu$는 **replica 하나에서 잰 값**입니다. 같은 시료라도 replica (상태 + 배치)마다 값이 다릅니다.
+
 3. **"Let $\langle\cdot\rangle$ denote expectation along one tilted path conditional on the root"**
-   뿌리를 고정하고, 기울인 커널 $K_1,\dots,K_{L-1}$로 보조 변수를 깊이마다 뽑고, $K_L$ (Gibbs)로 스핀을 뽑는 평균입니다.
-   $L=1$ (보조 변수 없음)이면 그냥 Gibbs 평균입니다.
-4. **"let $\mathbb E_{\mathbf u}$ average the root at fixed $\mathbf u$"**
-   무질서(뿌리)에 대한 평균입니다. $\mathbf u$는 고정된 매개변수이므로 평균하지 않습니다.
+   뿌리를 고정하고, 기울인 커널 $K_1,\dots,K_{L-1}$로 깊이마다 보조 변수를, $K_L$ (Gibbs)로 스핀을 뽑는 평균.
+
+   🔭 **물리.** 시료 하나의 **열평형 평균**. RSB 그림에서는 "깊이 1 상태를 Parisi 무게로 고르고, 그 안에서 깊이 2 상태를 고르고, …, 마지막
+   순수 상태 안에서 Boltzmann 평균" — 즉 $\sum_\alpha W_\alpha\langle\cdot\rangle_\alpha$입니다. 보조 변수가 없으면 ($L=1$) 보통의 Gibbs 평균.
+
+4. **"let $\mathbb E_{\mathbf u}$ average the root at fixed $\mathbf u$"** — 무질서(뿌리)에 대한 평균. $\mathbf u$는 고정된 매개변수.
+
+   🔭 **물리.** **시료 평균** (실험으로 치면 같은 제조법으로 만든 여러 시료를 측정해 평균). $\mathbf u$는 "실험자가 정한 탐침 세기"라서 평균하지 않습니다.
+
 5. **"$e_{\nu,N}(\mathbf u)=\frac{1}{c_\nu s_N}\mathbb E\langle|D_\nu-\mathbb E\langle D_\nu\rangle|\rangle$"**
-   - 분모 $c_\nu s_N=\mathbb En_\nu=:\lambda_\nu$: $D_\nu$는 항 $\approx\lambda_\nu$개의 합이라 크기가 $\lambda_\nu$ 정도이므로 그것으로 나눈 **상대 오차**입니다.
-   - 절댓값 안에서 빼는 것은 $\langle D\rangle$가 아니라 **전체 평균** $\mathbb E\langle D\rangle$입니다. 그래서 위 0절의 ①과 ②가 둘 다 들어 있습니다.
-   - $e_{\nu,N}\to0$이면: "점수 $D_\nu$는 $(1+o(1))\times$ 결정적 상수"라는 뜻입니다.
+   - 분모 $c_\nu s_N=\mathbb En_\nu=:\lambda_\nu$로 나눈 **상대 오차**.
+   - 빼는 것이 **전체 평균** $\mathbb E\langle D\rangle$이므로 0절의 ①과 ②가 모두 들어 있습니다.
+
+   🔭 **물리.** $e_{\nu,N}\to0$은 "**탐침 응답이 시료에도, 상태에도, replica에도 의존하지 않는다**" (self-averaging + 상태 간 무요동)입니다.
+   이것이 Ghirlanda–Guerra 항등식과 확률적 안정성 (stochastic stability)의 출발점입니다. SK에서 $\mathbb E\langle|H_p-\mathbb E\langle H_p\rangle|\rangle=o(N)$에 해당합니다.
 
 ### 기호
 
-| 기호 | 의미 |
-|---|---|
-| $\psi_{\nu,q}$ | $q$번째 섭동 인자 (6.2) |
-| $D_\nu=\partial_{u_\nu}\log(\text{spin weight})$ | 점수 |
-| $\lambda_\nu=c_\nu s_N$ | 종류 $\nu$의 평균 항 수 |
-| $\langle\cdot\rangle$ | 뿌리 고정, 기울인 경로 하나에 대한 평균 |
-| $\mathbb E_{\mathbf u}$ | $\mathbf u$ 고정, 뿌리에 대한 평균 |
-| $e_{\nu,N}$ | 상대 평균 절대 편차 (열적 + 무질서) |
-
-### 물리적 의미
-
-SK에서 Ghirlanda–Guerra 항등식의 출발점은 $\mathbb E\langle|H_p-\mathbb E\langle H_p\rangle|\rangle=o(N)$입니다 ($H_p$는 $p$-spin 섭동
-해밀토니안). $D_\nu$가 그 역할을 합니다. 차이는 $\langle\cdot\rangle$이 단순한 Gibbs 평균이 아니라 **Parisi 위계를 따라 상태를 고르고
-그 안에서 배치를 고르는** 평균이라는 점입니다.
+| 기호 | 수학적 정의 | 스핀 글라스에서의 뜻 |
+|---|---|---|
+| $\psi_{\nu,q}$ | (6.2) 섭동 인자 | 상태 색에 따른 약한 국소장 + 시험 항 |
+| $D_\nu$ | $\partial_{u_\nu}\log(\text{가중치})$ | 탐침 세기 $u$에 켤레인 응답 (색 가중 자화) |
+| $\lambda_\nu=c_\nu s_N$ | 평균 항 수 | 탐침이 닿는 자리 수 $\sim N^{3/4}$ (전체 스핀의 비율 $N^{-1/4}\to0$) |
+| $\langle\cdot\rangle$ | 기울인 경로 하나의 평균 | 시료 하나의 열평형 평균 (상태 무게 포함) |
+| $\mathbb E_{\mathbf u}$ | 뿌리 평균 | 시료 평균 |
+| $e_{\nu,N}$ | 상대 평균 절대 편차 | 응답의 상대 요동 (열적 + 시료 간) |
 
 ---
 
@@ -86,13 +111,19 @@ SK에서 Ghirlanda–Guerra 항등식의 출발점은 $\mathbb E\langle|H_p-\mat
 ### 문장별 풀이
 
 1. **"$\int e_{\nu,N}(\mathbf u)\,\pi(d\mathbf u)\to0$"**
-   $\pi$는 각 $u_\mu$를 구간 $I_\mu$에서 균등하게 뽑는 곱측도입니다 (6.1절). 그러니 이 식은 "**대부분의** 매개변수 $\mathbf u$에서 오차가
-   작다"는 뜻이고, 특정한 $\mathbf u$ 하나에서 작다는 뜻은 아닙니다. 점별로 주장하지 않는 이유는 문단 8에서 나옵니다. 볼록 함수의
-   도함수는 꺾이는 점에서 튈 수 있기 때문입니다. 1차 상전이 점에서 자화가 불연속인 것과 같은 현상입니다.
-2. **"holds for the reservoir as well"**
-   증명은 "독립 유계 입력 $O(N)$개"라는 구조만 쓰므로 clause 평균이 $\rho_N$인 저장소에도 그대로 적용됩니다 (5장 마지막 문단).
-3. **"Constants need not be uniform in $L$ or $\nu$"**
-   아래 상수들에 $1/m_1=L$과 $1/|I_\nu|=j^j$가 들어갑니다. $L$과 $\nu$를 고정한 뒤 $N\to\infty$로 보내므로 상관없습니다.
+   $\pi$는 각 $u_\mu$를 $I_\mu$에서 균등하게 뽑는 곱측도. "**대부분의** $\mathbf u$에서 오차가 작다"는 뜻이고 점별 주장은 아닙니다.
+
+   🔭 **물리.** "거의 모든 탐침 세기에서". GG 항등식이 "거의 모든 온도에서" 성립하는 것과 같습니다. 예외가 될 수 있는 것은 **상전이 점**
+   (예: 1차 전이에서 두 상태가 공존해 응답이 상태마다 다르게 튀는 세기)인데, 그런 점은 측도가 0에 가깝게 드뭅니다 (문단 8의 풀이 3).
+
+2. **"holds for the reservoir as well"** — 증명이 "독립 유계 입력 $O(N)$개"만 쓰므로 clause 평균이 $\rho_N$인 저장소에도 적용됩니다.
+
+   🔭 **물리.** 저장소는 스핀 하나를 뺀 $N$ 스핀 시료 (cavity 계). 거기서도 탐침 응답이 자기평균한다는 뜻입니다.
+
+3. **"Constants need not be uniform in $L$ or $\nu$"** — 상수에 $1/m_1=L$과 $1/|I_\nu|=j^j$가 들어갑니다.
+
+   🔭 **물리.** 위계를 촘촘히 할수록 ($L$↑) 얕은 층의 무게 $m_1=1/L$이 작아져 그 층의 요동이 자유에너지 곡률에 덜 드러나고, 탐침이 약할수록
+   ($j$↑) 세기 구간이 좁아져 평균 효과가 약해집니다. 그래서 수렴이 느려지지만, $L$, $\nu$를 고정한 뒤 $N\to\infty$로 보내므로 상관없습니다.
 
 ---
 
@@ -105,17 +136,25 @@ SK에서 Ghirlanda–Guerra 항등식의 출발점은 $\mathbb E\langle|H_p-\mat
 
 ### 문장별 풀이
 
-1. **"Hold the other parameters fixed, write $u=u_\nu$, $n=n_\nu$"**
-   다른 종류의 $u_\mu$ ($\mu\ne\nu$)는 상수로 두고, $u_\nu$ 하나만 변수로 봅니다. 이후 "$u$"는 $u_\nu$, "$n$"은 $n_\nu$입니다.
-2. **"Choose an open interval $J_\nu$ containing $I_\nu$ such that $|t_\nu|+|u|<1/2$"**
-   $I_\nu=[j^{-j},2j^{-j}]$보다 조금 넓은 열린 구간이 필요한 이유는 문단 8에서 $u\pm\rho$ (구간 밖으로 살짝 나간 점)를 쓰기 때문입니다.
-   존재 확인: $t_\nu=1/j\le1/4$이고 $2j^{-j}\le2/256$이므로 합이 $1/2$보다 충분히 작아, 여유 있는 구간을 잡을 수 있습니다. ✓
-3. **"$|D_\nu|\le2n$"**
-   $|t g\sigma|+|u g_0S_0|\le|t|+|u|<1/2$ ($|g|,|g_0|,|\sigma|\le1$) ⇒ $\psi>1/2$ ⇒ 항 하나 $|g_0S_0/\psi|<1/(1/2)=2$ ⇒ $n$개 합 $\le2n$. ✓
-4. **"$\partial_uD_\nu=-\sum(g_0S_0)^2/\psi^2$"**
-   항 하나를 미분하면 $\partial_u\frac{a}{1+\dots+ua}=-\frac{a\cdot a}{\psi^2}$ ($a=g_0S_0$). $a^2\le1$, $\psi^{-2}<4$ ⇒ 항 하나는 $[-4,0]$ ⇒ $-4n\le\partial_uD\le0$. ✓
+1. **"Hold the other parameters fixed, write $u=u_\nu$, $n=n_\nu$"** — 다른 종류의 $u_\mu$는 상수, $u_\nu$ 하나만 변수.
 
-"pathwise"는 이 부등식이 모든 뿌리·경로 값에서 (평균하지 않고) 성립한다는 뜻입니다.
+   🔭 **물리.** 여러 탐침 장 중 하나의 세기만 조절하며 그 응답을 봅니다 (다른 장은 켠 채로 고정).
+
+2. **"Choose an open interval $J_\nu$ … $|t_\nu|+|u|<1/2$"** — 문단 8에서 $u\pm\rho$를 쓰려고 $I_\nu$보다 조금 넓게 잡습니다.
+   $t_\nu\le1/4$, $2j^{-j}\le2/256$이므로 가능합니다. ✓
+
+   🔭 **물리.** **약한 섭동 영역**: 탐침 하나가 그 자리의 Boltzmann 가중치를 최대 2배까지만 바꿉니다 ($\psi\in(\tfrac12,\tfrac32)$). 계의 성질을 탐침이 "부수지 않는" 범위입니다.
+
+3. **"$|D_\nu|\le2n$"** — $\psi>1/2$ ⇒ 항 하나 $|g_0S_0/\psi|<2$ ⇒ $n$개 합 $\le2n$. ✓
+
+   🔭 **물리.** 응답은 탐침 수에 비례하는 **크기 상한(extensive bound)**을 가집니다. 자화가 $|\sum\sigma_i|\le N$인 것과 같습니다.
+
+4. **"$\partial_uD_\nu=-\sum(g_0S_0)^2/\psi^2\in[-4n,0]$"** — 항 하나 미분 $-a^2/\psi^2$, $a^2\le1$, $\psi^{-2}<4$. ✓
+
+   🔭 **물리.** $\partial_uD$는 응답의 **명시적(배치 고정) 변화율**, 즉 열적 요동과 무관한 "고유 곡률"입니다. $\psi$가 $u$에 대해 지수가 아니라
+   1차식이라서 생기는 음의 항이고, 탐침 수만큼만 클 수 있습니다. (만약 $\psi=e^{ug_0S_0}$였다면 이 항은 0입니다.)
+
+"pathwise"는 모든 시료·replica에서 평균 없이 성립한다는 뜻입니다.
 
 ---
 
@@ -133,55 +172,75 @@ SK에서 Ghirlanda–Guerra 항등식의 출발점은 $\mathbb E\langle|H_p-\mat
 ### 문장별 풀이
 
 1. **"Let $X_0(u)$ be the random root log partition function before taking the root expectation."**
-   섭동된 계의 분배함수를 3.1절의 power-mean 재귀로 뿌리까지 올린 값의 로그, 즉 $X_0=\log T_0Z$입니다. 뿌리가 무작위이므로
-   $X_0$도 무작위이고, $u$의 함수입니다. 그 기대값이 5장의 $P_N^{L,\mathbf u}$입니다.
-2. **"regard the logarithm of the spin weight as $X_L$ and the spin partition function as the step with exponent $m_L=1$"**
-   3.1절의 재귀는 $X_{L-1}=\log Z$에서 시작합니다. 여기서는 한 칸 더 내려가서
-   $$X_L(\sigma)=\log(\text{스핀 가중치}),\qquad X_{L-1}=\log\sum_\sigma e^{X_L(\sigma)}=\frac1{m_L}\log\sum_\sigma e^{m_LX_L}\quad(m_L=1)$$
-   로 둡니다. 그러면 **모든 단계가 같은 모양** $X_{d-1}=\frac1{m_d}\log P_de^{m_dX_d}$가 되고, 마지막 단계의 기울인 커널
-   $K_L=e^{X_L-X_{L-1}}$이 바로 Gibbs 측도입니다. (마지막 단계의 $P_L$은 확률이 아니라 개수 측도지만, 미분 계산에는 상관없습니다.)
-3. **"Differentiation of one backward step gives $\partial X_{d-1}=K_d(\partial X_d)$"** — 원문이 생략한 계산:
-   $m=m_d$로 쓰면 $X_{d-1}=\frac1m\log\int e^{mX_d}\,dP_d$이므로
-   $$\partial X_{d-1}=\frac1m\cdot\frac{\int e^{mX_d}\,m\,\partial X_d\,dP_d}{\int e^{mX_d}\,dP_d}=\int\partial X_d\;\underbrace{e^{m(X_d-X_{d-1})}dP_d}_{=K_d\ (3.2)}=K_d(\partial X_d).$$ ✓
-4. **"$\partial^2X_{d-1}=K_d(\partial^2X_d)+m_d\mathrm{Var}_{K_d}(\partial X_d)$"** — 한 번 더 미분:
-   $K_d(\partial X_d)=\int\partial X_d\,e^{m(X_d-X_{d-1})}dP_d$에서 곱의 미분을 하면
-   $$\partial^2X_{d-1}=\int\partial^2X_d\,dK_d+\int\partial X_d\cdot m(\partial X_d-\partial X_{d-1})\,dK_d
-   =K_d(\partial^2X_d)+m\bigl[K_d((\partial X_d)^2)-(K_d\partial X_d)^2\bigr].$$
-   괄호가 $K_d$ 아래 분산입니다. ✓ ("로그 적률생성함수의 2차 도함수는 분산"의 한 단계 판.)
-5. **"Thus, for $M_d=\langle D_\nu\mid\mathscr F_d\rangle$, $X_0'(u)=\langle D_\nu\rangle$"** — 맨 아래에서 위로 올라갑니다:
-   - 맨 아래: $\partial X_L=\partial_u\log(\text{스핀 가중치})=D_\nu$ (문단 1의 풀이 1). 이것이 $M_L$입니다.
-   - 한 단계 위: $\partial X_{L-1}=K_L(D_\nu)=\langle D_\nu\mid\mathscr F_{L-1}\rangle=M_{L-1}$.
-   - 계속하면 $\partial X_d=M_d$ (기울인 법칙 아래 조건부 기대값의 탑 성질). 뿌리에서 $\partial X_0=M_0=\langle D_\nu\rangle$. 이것이 (6.7)입니다. ✓
+   섭동된 계의 분배함수를 power-mean 재귀로 뿌리까지 올린 값의 로그, $X_0=\log T_0Z$. 시료마다 다르고 $u$의 함수입니다.
 
-   **뜻**: 자유에너지의 $u$-도함수 = 점수의 평균. 이 사실 덕분에 무질서 요동 ②를 "$X_0'$의 요동"으로 바꿀 수 있습니다.
-6. **(6.8)의 등식** — 4의 식을 맨 위에서부터 펼칩니다:
-   $$X_0''=K_1(\partial^2X_1)+m_1\mathrm{Var}_{K_1}(M_1)
-   =K_1K_2(\partial^2X_2)+m_2K_1\mathrm{Var}_{K_2}(M_2)+m_1\mathrm{Var}_{K_1}(M_1)=\cdots$$
-   $$=\langle\partial^2X_L\rangle+\sum_{d=1}^Lm_d\langle\mathrm{Var}_{K_d}(M_d)\rangle .$$
-   여기서 $\partial^2X_L=\partial_uD_\nu$이고, 깊이 $d$ 커널 아래 $M_d$의 분산은 마팅게일 차분의 조건부 2차 모멘트
-   $\mathrm{Var}_{K_d}(M_d)=\langle(M_d-M_{d-1})^2\mid\mathscr F_{d-1}\rangle$입니다 ($K_d(M_d)=M_{d-1}$이므로). ✓
-   - **점검 ($L=1$)**: 보조 변수가 없으면 $X_0''=\langle\partial D\rangle+\mathrm{Var}_{\rm Gibbs}(D)$ — 익숙한 "$\partial^2\log Z$ = 평균 곡률 + 분산"입니다.
-7. **(6.8)의 부등식 "$\ge m_1\mathrm{Var}(D_\nu\mid\mathscr F_0)-4n$"**
-   - $m_d\ge m_1$ (지수가 증가)이므로 $\sum_dm_d\langle(M_d-M_{d-1})^2\rangle\ge m_1\sum_d\langle(M_d-M_{d-1})^2\rangle$.
-   - 마팅게일 차분은 서로 직교하므로 $\sum_d\langle(M_d-M_{d-1})^2\rangle=\langle(M_L-M_0)^2\rangle=\langle(D-\langle D\rangle)^2\rangle=\mathrm{Var}(D\mid\mathscr F_0)$.
-   - (6.6)에서 $\langle\partial_uD\rangle\ge-4n$.
-   - 합치면 (6.8). ✓
+   🔭 **물리.** **시료 하나의 자유에너지** ($-\beta F$). 다만 RSB 위계를 Monasson 방식 ($Z^m$ 재가중)으로 포함한 "위계 자유에너지"입니다.
+   그 시료 평균이 5장의 $P_N^{L,\mathbf u}$ (≈ $N\times$ pressure).
+
+2. **"regard the logarithm of the spin weight as $X_L$ … exponent $m_L=1$"**
+   $$X_L(\sigma)=\log(\text{스핀 가중치}),\qquad X_{L-1}=\log\sum_\sigma e^{X_L(\sigma)}\ (m_L=1),\qquad X_{d-1}=\frac1{m_d}\log P_de^{m_dX_d}.$$
+   모든 단계가 같은 모양이 되고, 마지막 단계의 기울인 커널 $K_L=e^{X_L-X_{L-1}}$이 Gibbs 측도.
+
+   🔭 **물리 — 재귀의 각 층.**
+   | 항 | 뜻 |
+   |---|---|
+   | $X_L(\sigma)=-\beta H(\sigma)+\sum\log\psi$ | 배치 하나의 (음의) 에너지 × $\beta$ |
+   | $X_{L-1}=\log\sum_\sigma e^{X_L}$ | 가장 깊은 상태 (순수 상태) 하나의 자유에너지 |
+   | $X_{d-1}=\frac1{m_d}\log P_de^{m_dX_d}$ | 깊이 $d-1$ 상태의 자유에너지 = 그 안의 하위 상태들을 **$Z^{m_d}$로 합친** 것 (Monasson). $m_d\to1$: 하위 상태들을 그냥 더함, $m_d\to0$: 하위 상태들의 자유에너지를 단순 평균 |
+   | $K_L$ | 상태 안의 Boltzmann 분포 |
+   | $K_d=e^{m_d(X_d-X_{d-1})}P_d$ | 부모 상태 안에서 하위 상태를 고를 확률 $\propto Z_{\text{하위}}^{m_d}$ — **Parisi 상태 무게** |
+
+3. **"$\partial X_{d-1}=K_d(\partial X_d)$"** — $X_{d-1}=\frac1m\log\int e^{mX_d}dP_d$를 미분하면
+   $$\partial X_{d-1}=\frac{\int e^{mX_d}\partial X_d\,dP_d}{\int e^{mX_d}dP_d}=\int\partial X_d\,\underbrace{e^{m(X_d-X_{d-1})}dP_d}_{=K_d}=K_d(\partial X_d).$$ ✓
+
+   🔭 **물리.** **Hellmann–Feynman / 켤레 관계**: 자유에너지의 장 도함수 = 켤레 관측량의 평균. 위계 버전에서는 "부모 상태의 응답 = 하위
+   상태들의 응답을 Parisi 무게 $K_d$로 평균한 것".
+
+4. **"$\partial^2X_{d-1}=K_d(\partial^2X_d)+m_d\mathrm{Var}_{K_d}(\partial X_d)$"** — 곱의 미분:
+   $$\partial^2X_{d-1}=K_d(\partial^2X_d)+m\bigl[K_d((\partial X_d)^2)-(K_d\partial X_d)^2\bigr].$$ ✓
+
+   🔭 **물리 — 요동-응답 정리의 한 층.** 감수율 (자유에너지의 2차 도함수) = (하위 상태들의 감수율 평균) + $m_d\times$(**형제 상태들 사이의 응답
+   분산**). 상태마다 응답이 다르면 그만큼 감수율이 커지는데, 그 기여가 $m_d$로 깎입니다. $m_d\to0$이면 상태 간 요동은 감수율에 안 보이고
+   (quenched), $m_d=1$이면 보통의 요동-응답 정리 $\chi=\langle\delta D^2\rangle$입니다.
+
+5. **"Thus, for $M_d=\langle D_\nu\mid\mathscr F_d\rangle$, $X_0'(u)=\langle D_\nu\rangle$"** — 맨 아래 $\partial X_L=D_\nu=M_L$에서 시작해 3을 반복하면
+   $\partial X_d=M_d$, 뿌리에서 $X_0'=M_0=\langle D_\nu\rangle$. ✓
+
+   🔭 **물리.**
+   - $M_d$ = **깊이 $d$ 상태 안에서의 평균 응답** (그 상태의 "색 가중 자화"). $M_L=D_\nu$는 배치 하나의 값, $M_0=\langle D\rangle$은 시료 전체 평균.
+   - (6.7) = "시료의 자유에너지를 탐침 세기로 미분하면 평균 응답". 그래서 ② (시료 간 요동)는 **자유에너지 기울기의 시료 간 요동**으로 바뀝니다.
+
+6. **(6.8)의 등식** — 4를 위에서부터 펼치면
+   $$X_0''=\langle\partial^2X_L\rangle+\sum_{d=1}^Lm_d\langle\mathrm{Var}_{K_d}(M_d)\rangle,\qquad\partial^2X_L=\partial_uD,\quad\mathrm{Var}_{K_d}(M_d)=\langle(M_d-M_{d-1})^2\mid\mathscr F_{d-1}\rangle.$$ ✓
+   점검 ($L=1$): $X_0''=\langle\partial D\rangle+\mathrm{Var}_{\rm Gibbs}(D)$.
+
+   🔭 **물리 — 위계적 요동-응답 정리.**
+   | 항 | 뜻 |
+   |---|---|
+   | $X_0''$ | 탐침 세기에 대한 **감수율** $\chi_u=\partial_u\langle D\rangle$ |
+   | $\langle\partial_uD\rangle$ | 고유 (비열적) 기여 — 문단 3의 4 |
+   | $M_d-M_{d-1}$ | 깊이 $d$에서 상태를 한 단계 더 구체적으로 정했을 때 응답이 바뀌는 양 = **깊이 $d$ 상태 간 응답 차이** ($d=L$이면 순수 상태 안의 열적 요동) |
+   | $m_d\langle(M_d-M_{d-1})^2\rangle$ | 깊이 $d$의 요동이 감수율에 주는 기여, Parisi 무게 $m_d$로 가중 |
+
+   Parisi 해에서 감수율이 $\chi=\beta\int(1-q(x))dx$처럼 층별 overlap을 $x$로 가중해 합한 꼴이 되는 것과 같은 구조입니다.
+
+7. **(6.8)의 부등식** — $m_d\ge m_1$, 마팅게일 차분 직교성 $\sum_d\langle(M_d-M_{d-1})^2\rangle=\mathrm{Var}(D\mid\mathscr F_0)$, $\langle\partial D\rangle\ge-4n$. ✓
+
+   🔭 **물리.** $\mathrm{Var}(D\mid\mathscr F_0)$는 **시료 하나 안에서 replica마다 응답이 다른 정도 전부** (상태 간 + 상태 안). 부등식은
+   "감수율이 작으면 그 시료 안의 응답 요동도 작다" — 요동-응답 정리의 방향을 거꾸로 쓴 것입니다. 가장 얕은 층의 무게 $m_1$이 가장 작으므로
+   그 층 요동이 가장 "숨기 쉽고", 하한은 $m_1$로 정해집니다.
 
 ### 기호
 
-| 기호 | 의미 |
-|---|---|
-| $X_L=\log(\text{spin weight})$ | 잎에서의 로그 가중치 (스핀 배치의 함수) |
-| $X_{d-1}=m_d^{-1}\log P_de^{m_dX_d}$ | (3.2) 위의 Monasson 퍼텐셜, $X_{L-1}=\log Z$ |
-| $X_0(u)$ | 뿌리의 로그 (무작위, $u$의 함수) |
-| $M_d=\langle D_\nu\mid\mathscr F_d\rangle$ | 깊이 $d$까지의 접두부가 주어졌을 때 점수의 평균 (마팅게일) |
-| $\mathrm{Var}(D\mid\mathscr F_0)$ | 뿌리 고정, 경로에 대한 점수의 분산 = 열적 분산 |
-
-### 물리적 의미
-
-$X_0''$의 분산 항이 **깊이별로 $m_d$로 가중**됩니다. "점수가 어느 깊이-$d$ 상태에 있느냐에 따라 달라지는 정도"는 $m_d$만큼만
-자유에너지의 곡률에 기여합니다. $m$이 "상태 사이 요동의 무게"라는 Parisi 매개변수의 해석이 그대로 보입니다. 가장 얕은 깊이의 가중치
-$m_1=1/L$이 가장 작으므로 하한이 $m_1$로 정해지고, 그래서 상수가 $L$에 의존합니다.
+| 기호 | 수학적 정의 | 스핀 글라스에서의 뜻 |
+|---|---|---|
+| $X_L$ | 로그 스핀 가중치 | 배치 하나의 $-\beta\times$에너지 |
+| $X_d$ | 재귀의 깊이 $d$ 값 | 깊이 $d$ 상태의 (Monasson) 자유에너지 |
+| $X_0(u)$ | 뿌리 로그 | 시료의 위계 자유에너지 |
+| $K_d$ | 기울인 커널 (3.2) | Parisi 상태 무게 $\propto Z^{m_d}$ |
+| $M_d$ | $\langle D\mid\mathscr F_d\rangle$ | 깊이 $d$ 상태 안의 평균 응답 |
+| $X_0''$ | 2차 도함수 | 탐침 감수율 |
+| $\mathrm{Var}(D\mid\mathscr F_0)$ | 경로에 대한 분산 | 시료 안에서 replica 간 응답 요동 |
 
 ### 수치 확인
 
@@ -194,7 +253,8 @@ $X_0(u)$를 power mean으로 직접 계산해 유한 차분 ($h=10^{-4}$)과 비
 | 0.05 | 0.36049007 | 0.36049007 | −0.396741 | −0.396741 | −0.6934 | −15.72 |
 | 0.1 | 0.34052713 | 0.34052713 | −0.402063 | −0.402063 | −0.6913 | −15.72 |
 
-(6.7)과 (6.8)의 등식이 일치하고, 부등식의 두 하한도 성립합니다. ✓
+(6.7)과 (6.8)의 등식이 일치하고, 부등식의 두 하한도 성립합니다. ✓ (이 장난감에서는 고유 곡률 $\langle\partial D\rangle$가 커서 $X_0''<0$입니다.
+그래서 문단 7에서 $2nu^2$를 더해 볼록하게 만들어야 합니다.)
 
 ---
 
@@ -207,12 +267,15 @@ $X_0(u)$를 power mean으로 직접 계산해 유한 차분 ($h=10^{-4}$)과 비
 
 ### 문장별 풀이
 
-1. **"use the tilted path law at the current $u$"** — $K_d$는 $u$에 의존합니다. 문단 4의 $\langle\cdot\rangle$, $\mathrm{Var}$는 모두 지금 보고 있는
-   $u$ 값에서의 기울인 법칙입니다.
-2. **"At fixed root all derivatives are justified …"** — 뿌리를 고정하면 섭동 항이 유한 개이고, 각 $\psi$는 $u$의 매끄러운 양함수이며,
-   재귀도 유한 단계입니다. 그래서 미분과 유한 합·적분의 교환이 문제없습니다.
-3. **"Their root expectations are justified by the finite moments of the Poisson counts."** — 다음 문단에서 $\mathbb E X_0'$, $\mathbb E X_0''$를 씁니다.
-   $|X_0'|\le2n$, $|X_0''|\le4n+\sum_dm_d(2n)^2\lesssim n+n^2$이고 $\mathbb En^2<\infty$이므로 지배 수렴으로 기대값과 미분을 바꿀 수 있습니다. ✓
+1. **"use the tilted path law at the current $u$"** — $K_d$가 $u$에 의존하므로, 평균·분산은 지금 $u$ 값에서의 기울인 법칙입니다.
+
+   🔭 **물리.** 감수율은 **탐침을 켠 상태의 평형**에서 잽니다. 탐침을 바꾸면 상태 무게도 따라 바뀝니다.
+
+2. **"At fixed root all derivatives are justified …"** — 시료 하나에서는 탐침 수가 유한하고 $\psi$가 매끄러우므로 미분이 문제없습니다.
+
+3. **"Their root expectations are justified by the finite moments of the Poisson counts."** — $|X_0'|\le2n$, $|X_0''|\lesssim n+n^2$, $\mathbb En^2<\infty$ ⇒ 지배 수렴. ✓
+
+   🔭 **물리.** 탐침 수가 시료마다 Poisson으로 흔들리지만 분산이 유한하므로, 시료 평균한 자유에너지를 미분해도 됩니다.
 
 ---
 
@@ -226,23 +289,28 @@ $X_0(u)$를 power mean으로 직접 계산해 유한 차분 ($h=10^{-4}$)과 비
 
 ### 문장별 풀이
 
-1. **"Integrating (6.8) over $I_\nu=[a,b]$"** — (6.8)을 $\mathrm{Var}$에 대해 정리하면 $m_1\mathrm{Var}(D\mid\mathscr F_0)\le X_0''(u)+4n$. 양변을 $u\in[a,b]$에서 적분:
+1. **"Integrating (6.8) over $I_\nu=[a,b]$"** —
    $$m_1\int_a^b\mathrm{Var}\,du\le\int_a^bX_0''\,du+4n(b-a)=X_0'(b)-X_0'(a)+4n(b-a).$$
-2. **"using $|X_0'|\le2n$"** — $X_0'=\langle D\rangle$이고 (6.6)에서 $|D|\le2n$이므로 $|X_0'(b)-X_0'(a)|\le4n$. 따라서
-   $$m_1\int_a^b\mathrm{Var}\,du\le4n+4n(b-a)=4n(1+b-a).$$
-   **요점**: 곡률을 적분하면 도함수의 차이가 되고, 도함수(평균 점수)는 유계입니다. 그래서 곡률의 큰 값, 곧 큰 분산은 오래 지속될 수 없습니다.
-3. **(6.9)** — 뿌리에 대해 평균하고 $\mathbb En=\lambda_\nu$를 넣으면 됩니다. 뿌리의 법칙은 $u$와 무관하므로 적분 순서를 바꿔도 됩니다. ✓
-4. **"Consequently the interval-averaged thermal mean absolute deviation, divided by $\lambda_\nu$, is at most (6.10)"**
-   "열적 평균 절대 편차"는 $\mathbb E\langle|D-\langle D\rangle|\rangle$, 곧 0절의 조각 ①입니다. 분산에서 절대 편차로 넘어가는 데 Jensen을 두 번 씁니다.
-   $$\frac1{|I|}\int_I\mathbb E\langle|D-\langle D\rangle|\rangle du
-   \overset{(\mathrm a)}{\le}\frac1{|I|}\int_I\sqrt{\mathbb E\mathrm{Var}}\,du
-   \overset{(\mathrm b)}{\le}\Bigl(\frac1{|I|}\int_I\mathbb E\mathrm{Var}\,du\Bigr)^{1/2}
-   \overset{(6.9)}{\le}\Bigl(\frac{4\lambda(1+|I|)}{m_1|I|}\Bigr)^{1/2}.$$
-   (a) $\mathbb E|Y|\le\sqrt{\mathbb EY^2}$ (뿌리와 경로를 함께 평균), (b) 구간 평균에 대한 $\sqrt{\cdot}$의 오목성. 마지막에 $\lambda$로 나누면 (6.10). ✓
-5. **크기** — $\lambda_\nu=c_\nu N^{3/4}$이므로 (6.10)은 $\propto\lambda^{-1/2}\propto N^{-3/8}\to0$. 조각 ①이 끝났습니다.
 
-**판단 메모.** 상수가 $1/|I_\nu|=j^j$와 $1/m_1=L$에 의존하므로 $\nu$와 $L$에 대해 균등하지 않습니다. Lemma 6.1이 명시한 대로이며,
-이후 극한은 항상 "$L$, $\nu$ 고정 후 $N\to\infty$" 순서입니다.
+   🔭 **물리.** 감수율을 장 세기에 대해 적분하면 **응답의 총 변화량**이 됩니다 ($\int\chi\,du=\Delta\langle D\rangle$). 비열을 온도에 대해 적분하면
+   에너지 변화가 되는 것과 같습니다.
+
+2. **"using $|X_0'|\le2n$"** — $|X_0'(b)-X_0'(a)|\le4n$ ⇒ $m_1\int\mathrm{Var}\le4n(1+b-a)$.
+
+   🔭 **물리.** 응답 $\langle D\rangle$은 크기 상한이 있으므로 총 변화량도 유계입니다. 따라서 **감수율이 큰 구간 (= 응답 요동이 큰 구간)은
+   오래 지속될 수 없습니다**. 상전이 점에서 감수율이 발산해도 그 폭은 좁습니다.
+
+3. **(6.9)** — 시료 평균, $\mathbb En=\lambda_\nu$. ✓
+
+4. **"interval-averaged thermal mean absolute deviation … (6.10)"** — Jensen 두 번:
+   $$\frac1{|I|}\int_I\mathbb E\langle|D-\langle D\rangle|\rangle du\le\frac1{|I|}\int_I\sqrt{\mathbb E\mathrm{Var}}\,du\le\Bigl(\frac1{|I|}\int_I\mathbb E\mathrm{Var}\Bigr)^{1/2}\le\Bigl(\frac{4\lambda(1+|I|)}{m_1|I|}\Bigr)^{1/2}.$$
+   $\lambda$로 나누면 (6.10). ✓
+
+   🔭 **물리.** 응답의 열적 요동은 표준편차 $\sim\sqrt{\lambda}$, 응답 자체는 $\sim\lambda$이므로 **상대 요동 $\lambda^{-1/2}\sim N^{-3/8}$**. 탐침 $N^{3/4}$개에 대한
+   큰수의 법칙 — 정상적인 열역학계에서 상전이점을 피하면 에너지의 상대 요동이 $N^{-1/2}$인 것과 같습니다. 핵심은 이것이 **상태 간 요동까지
+   포함**한다는 점입니다: 서로 다른 상태 (cluster)에서 잰 응답도 같은 값으로 몰립니다.
+
+**판단 메모.** 상수가 $1/|I_\nu|=j^j$와 $1/m_1=L$에 의존하므로 $\nu$와 $L$에 대해 균등하지 않습니다. 극한은 항상 "$L$, $\nu$ 고정 후 $N\to\infty$" 순서입니다.
 
 ---
 
@@ -255,22 +323,25 @@ $X_0(u)$를 power mean으로 직접 계산해 유한 차분 ($h=10^{-4}$)과 비
 > *Fluctuations of the root mean.* It remains to concentrate $X_0'$ over the root. By (6.8), the
 > random function $G(u)=X_0(u)+2nu^2$ is convex on $J_\nu$.
 
-- **"It remains to concentrate $X_0'$ over the root."** — 남은 것은 0절의 조각 ② $\langle D\rangle-\mathbb E\langle D\rangle$인데, (6.7)로 이것은
-  $X_0'(u)-\mathbb EX_0'(u)$, 곧 **무작위 함수 $X_0$의 도함수의 요동**입니다.
-- **"$G(u)=X_0(u)+2nu^2$ is convex"** — 문단 8의 도구는 "볼록 함수의 값이 집중하면 도함수도 집중한다"입니다. 그런데 $X_0$ 자체는 볼록이라는
-  보장이 없습니다. (6.8)이 주는 것은 $X_0''\ge-4n$뿐입니다. 그래서 $2nu^2$를 더해 곡률을 $4n$만큼 올립니다:
-  $$G''=X_0''+4n\ \ge\ m_1\mathrm{Var}(D\mid\mathscr F_0)\ \ge0.$$ ✓
-  $2nu^2$은 나중에 떼어 내야 하는 "보정"입니다 (문단 8의 풀이 6).
+- **"It remains to concentrate $X_0'$ over the root."** — 남은 것은 ② $\langle D\rangle-\mathbb E\langle D\rangle=X_0'-\mathbb EX_0'$.
+
+  🔭 **물리.** **시료마다 평균 응답이 다른가?** 같은 제조법의 시료들이 탐침에 같은 평균 응답을 보이는지의 문제입니다.
+
+- **"$G(u)=X_0(u)+2nu^2$ is convex"** — (6.8)이 주는 것은 $X_0''\ge-4n$뿐이므로 $2nu^2$를 더해 $G''=X_0''+4n\ge m_1\mathrm{Var}\ge0$. ✓
+
+  🔭 **물리.** 보통 자유에너지는 켤레 장에 대해 볼록합니다 (감수율 ≥ 0 = 열역학적 안정성). 여기서는 문단 3의 4에서 본 "고유 곡률"
+  $\langle\partial D\rangle\le0$ 때문에 그 성질이 깨질 수 있어, 무해한 2차항 $2nu^2$ (물리적 의미 없는 보정, 나중에 제거)을 더해 볼록성을 되살립니다.
 
 ### (7b) 필요한 두 추정 (6.11)
 
 > Uniformly for $u\in J_\nu$ and all the other parameters,
 > $$\mathrm{Var}(G(u))\leq C_\nu N,\qquad|\mathbb E_{\mathbf u}G'(u)|\leq C_\nu\lambda_\nu.\tag{6.11}$$
 
-- 첫째: 함수 **값** $G(u)$의 무질서 요동은 표준편차 $O(\sqrt N)$ (자유에너지의 self-averaging).
-- 둘째: 도함수의 **평균**은 크기 $O(\lambda_\nu)$.
-- 문단 8에서 이 둘의 크기 비교 $\sqrt N\ll\lambda_\nu=c_\nu N^{3/4}$가 결정적입니다.
-- 둘째 추정은 바로 나옵니다: $G'=X_0'+4nu$, $|X_0'|\le2n$, $|4nu|\le4n\cdot\tfrac12=2n$ ⇒ $|\mathbb EG'|\le4\lambda_\nu$. ✓ (원문 마지막 문장 "follows directly from (6.6)")
+- 첫째: 자유에너지 **값**의 시료 간 표준편차 $O(\sqrt N)$.
+- 둘째: 도함수의 **평균**은 $O(\lambda_\nu)$: $G'=X_0'+4nu$, $|X_0'|\le2n$, $|4nu|\le2n$ ⇒ $|\mathbb EG'|\le4\lambda_\nu$. ✓
+
+  🔭 **물리.** 첫째는 **자유에너지의 self-averaging** (총 자유에너지 $\sim N$, 시료 간 요동 $\sim\sqrt N$, 상대 요동 $N^{-1/2}$). 둘째는 평균 응답이
+  탐침 수에 비례한다는 것. 문단 8의 핵심은 "자유에너지 잡음 $\sqrt N$ ≪ 응답 신호 $N^{3/4}$"입니다.
 
 ### (7c) Efron–Stein 부등식
 
@@ -285,21 +356,22 @@ $X_0(u)$를 power mean으로 직접 계산해 유한 차분 ($h=10^{-4}$)과 비
 > This independent-input decomposition requires neither identical laws nor a symmetric statistic;
 > see Efron–Stein [Section 2].
 
-- **"condition on the physical and total perturbation counts"** — 분산을 두 단계로 나눕니다:
-  $$\mathrm{Var}G=\underbrace{\mathbb E\,\mathrm{Var}(G\mid\text{개수들})}_{\text{(7d)에서}}+\underbrace{\mathrm{Var}\,\mathbb E(G\mid\text{개수들})}_{\text{(7e)에서}}.$$
-  개수를 고정하면 나머지 무질서는 **독립인 입력들의 유한한 목록**이 됩니다: clause마다 ($\theta_k$, 자리 $p$개), 장 $h_i$ ($N$개),
-  섭동 항마다 (종류, 자리).
-- **"Conditional on the latter count, its types and sites are independent labels"** — 종류별 Poisson 개수 $n_\mu$들 대신 총 개수
-  $n_{\rm tot}\sim\mathrm{Pois}(s_N)$를 고정하면, 각 항의 종류는 확률 $c_\mu$로 i.i.d.이고 자리도 i.i.d.입니다 (Poisson 분할의 역방향). 그래서 각 항을
-  하나의 독립 입력으로 볼 수 있습니다.
-- **Efron–Stein 부등식** — "입력 하나를 바꿀 때의 변화"로 분산을 누르는 도구입니다. 원문의 짧은 증명을 풀면:
-  - $D_j:=\mathbb E[Z\mid\mathscr G_j]-\mathbb E[Z\mid\mathscr G_{j-1}]$ (Doob 마팅게일 차분). 입력이 독립이므로
-    $\mathbb E[E_jZ\mid\mathscr G_j]=\mathbb E[Z\mid\mathscr G_{j-1}]$이고, 따라서 원문 식 $D_j=\mathbb E[Z-E_jZ\mid\mathscr G_j]$와 같습니다. ✓
-  - 직교성: $\mathrm{Var}Z=\sum_j\mathbb ED_j^2$. ✓
-  - 조건부 Jensen: $D_j^2\le\mathbb E[(Z-E_jZ)^2\mid\mathscr G_j]$. ✓
-  - $\mathbb E(Z-E_jZ)^2$는 "$j$번째 입력에 대한 조건부 분산"의 평균이고, 이것은 그 입력을 독립 복사본으로 바꾼 $Z^{(j)}$와의 차이로
-    $\frac12\mathbb E(Z-Z^{(j)})^2$입니다 (같은 법칙의 독립 두 표본 $Y,Y'$에 대해 $\mathrm{Var}Y=\frac12\mathbb E(Y-Y')^2$). ✓
-  - 입력들이 같은 분포일 필요가 없다는 마지막 문장은, clause·장·섭동처럼 종류가 다른 입력을 한 목록에 섞어도 된다는 뜻입니다.
+- **"condition on the physical and total perturbation counts"** —
+  $\mathrm{Var}G=\mathbb E\,\mathrm{Var}(G\mid\text{개수들})+\mathrm{Var}\,\mathbb E(G\mid\text{개수들})$. 개수를 고정하면 무질서는 독립 입력들의 목록
+  (clause마다 결합과 자리, 장 $h_i$, 섭동 항마다 종류와 자리).
+
+  🔭 **물리.** 시료 간 차이의 원천을 둘로 나눕니다: (i) **결합·그래프·장의 구체적 값** (같은 결합 수에서도 다름), (ii) **결합 수 자체** (희석
+  그래프에서 clause 수가 Poisson으로 흔들림).
+
+- **"its types and sites are independent labels"** — 총 개수에 조건부로 각 섭동 항의 종류·자리는 i.i.d. (Poisson 분할의 역).
+
+  🔭 **물리.** 탐침들을 "무작위 자리에 독립으로 꽂힌 것"으로 볼 수 있다는 뜻.
+
+- **Efron–Stein 부등식과 그 증명** — $D_j$는 Doob 마팅게일 차분 ($\mathbb E[E_jZ\mid\mathscr G_j]=\mathbb E[Z\mid\mathscr G_{j-1}]$), 직교성
+  $\mathrm{Var}Z=\sum\mathbb ED_j^2$, 조건부 Jensen $D_j^2\le\mathbb E[(Z-E_jZ)^2\mid\mathscr G_j]$, 그리고 $\mathbb E(Z-E_jZ)^2=\frac12\mathbb E(Z-Z^{(j)})^2$. ✓
+
+  🔭 **물리.** "시료의 자유에너지 요동 ≤ **결합 하나를 바꿀 때 자유에너지가 바뀌는 양**들의 제곱합." 국소적인 무질서 하나하나의 영향을 더해
+  전체 요동을 누르는 도구입니다. 같은 분포일 필요가 없어서, 결합·장·탐침처럼 종류가 다른 무질서를 한꺼번에 다룰 수 있습니다.
 
 ### (7d) 입력 하나의 영향은 유계
 
@@ -309,15 +381,19 @@ $X_0(u)$를 power mean으로 직접 계산해 유한 차분 ($h=10^{-4}$)과 비
 > deletion of a term. Conditional variances are therefore bounded by a constant times the number of
 > root variables.
 
-- **"immediate for the spin weights"** — 입력 하나를 바꾸면 스핀 가중치가 모든 배치에서 같은 범위의 배수로 바뀝니다:
-  clause 하나 $e^{\pm2B}$, 장 하나 $e^{\pm2H}$, 섭동 하나 $[1/3,3]$배 ($\psi\in[\tfrac12,\tfrac32]$).
-- **"preserved by each power mean"** — Lemma 3.1의 단조성·동차성: 가중치가 점별로 $[c^{-1},c]$배 범위에서 바뀌면 power mean도 같은 범위에서
-  바뀝니다. 따라서 $|X_0-X_0^{(j)}|\le2B$, $2H$, 또는 $\log3$. ✓
-- **"its unused independent mark variables can be integrated out"** — 섭동 항을 지우면 그 항의 표시 변수가 남는데, 아무도 읽지 않으므로 사전분포로
-  적분하면 power mean이 바뀌지 않습니다 (상수의 power mean은 그 상수). 그래서 항의 추가·삭제도 같은 방식으로 다룹니다.
-- **"Conditional variances are therefore bounded by a constant times the number of root variables."** — Efron–Stein에 대입:
-  $$\mathrm{Var}(X_0\mid\text{개수들})\le\tfrac12\sum_j(\text{변화 상한})^2\le C\cdot(M+N+n_{\rm tot}).$$
-  평균하면 $C(\alpha N+N+s_N)=O(N)$. ✓
+- **"immediate for the spin weights and is preserved by each power mean"** — 결합 하나: 가중치가 모든 배치에서 $e^{\pm2B}$배 이내, 장 하나
+  $e^{\pm2H}$, 섭동 하나 $[1/3,3]$배. Lemma 3.1의 단조성으로 power mean을 지나도 같은 범위 ⇒ $|X_0-X_0^{(j)}|\le2B$, $2H$, $\log3$. ✓
+
+  🔭 **물리.** **희석 모형의 국소성**: 결합 하나는 스핀 $p$개만 묶으므로 그것을 바꾸면 자유에너지가 $O(1)$만 바뀝니다 (결합 세기가 유계일 때).
+  이 사실은 모든 상태, 모든 위계 층에 대해 성립합니다. 상태 무게가 재배치되어도 자유에너지 변화는 $O(1)$입니다.
+
+- **"its unused independent mark variables can be integrated out"** — 지운 탐침의 색 변수는 아무도 읽지 않으므로 적분해 없앱니다.
+
+  🔭 **물리.** 탐침을 뽑아도 그 탐침이 쓰던 "색"은 계에 영향이 없는 유령 변수가 되어 사라집니다.
+
+- **"Conditional variances … constant times the number of root variables"** — $\mathrm{Var}(X_0\mid\text{개수})\le C(M+N+n_{\rm tot})$, 평균 $O(N)$. ✓
+
+  🔭 **물리.** 독립 무질서 $O(N)$개가 각각 $O(1)$씩 기여 ⇒ 자유에너지 분산 $O(N)$.
 
 ### (7e) 개수의 요동과 마무리
 
@@ -327,20 +403,15 @@ $X_0(u)$를 power mean으로 직접 계산해 유한 차분 ($h=10^{-4}$)과 비
 > Applying this to the independent counts completes the $O(N)$ estimate. The correction $2nu^2$ obeys
 > the same estimates. The derivative bound in (6.11) follows directly from (6.6).
 
-- **"Conditional means are Lipschitz functions of the counts"** — $b(M,n_{\rm tot})=\mathbb E[X_0\mid M,n_{\rm tot}]$에서 개수를 1 늘리는 것은 항 하나를
-  추가하는 것이므로 (7d)에 따라 $b$가 유계만큼 변합니다.
-- **Lipschitz 보조정리** — $\mathrm{Var}\,b(Q)=\frac12\mathbb E(b(Q)-b(Q'))^2\le\frac{C^2}2\mathbb E(Q-Q')^2=C^2\mathrm{Var}Q$. ✓
-  개수가 여러 개(clause 수, 섭동 수)면 그 독립 개수들에 Efron–Stein을 다시 적용합니다. Poisson이므로 $\mathrm{Var}M=\alpha N$, $\mathrm{Var}\,n_{\rm tot}=s_N$ ⇒ $O(N)$. ✓
-- **"The correction $2nu^2$ obeys the same estimates."** — $\mathrm{Var}(2nu^2)=4u^4\lambda_\nu$이고 $u\le1/2$이므로 $\le\lambda_\nu=O(N)$. 공분산 항까지
-  $\mathrm{Var}(X+Y)\le2\mathrm{Var}X+2\mathrm{Var}Y$로 처리하면 $\mathrm{Var}G\le C_\nu N$. ✓
+- **"Conditional means are Lipschitz functions of the counts"** — 개수 하나 늘림 = 항 하나 추가 ⇒ 유계 변화.
+- **Lipschitz 보조정리** — $\mathrm{Var}\,b(Q)\le C^2\mathrm{Var}Q$. ✓ $\mathrm{Var}M=\alpha N$, $\mathrm{Var}\,n_{\rm tot}=s_N$ ⇒ $O(N)$. ✓
 
-**검토 메모.** "총 개수에 조건부로 종류·자리가 i.i.d. 라벨"은 종류별 개수가 독립 $\mathrm{Pois}(c_\mu s_N)$인 원래 모형과 같은 법칙입니다
-(Poisson 분할의 역). 따라서 이렇게 바꿔 보는 것은 정당합니다. ✓
+  🔭 **물리.** clause 수의 요동 $\sim\sqrt{\alpha N}$이 자유에너지에 주는 요동 $\sim\sqrt N$. 희석 그래프에서 "결합이 몇 개냐"도 시료마다 다르지만
+  그 효과는 결합 하나당 $O(1)$이라 같은 크기입니다.
 
-### 물리적 의미
+- **"The correction $2nu^2$ obeys the same estimates."** — $\mathrm{Var}(2nu^2)=4u^4\lambda_\nu\le\lambda_\nu$. ✓
 
-$\mathrm{Var}(\log Z)=O(N)$은 자유에너지의 **self-averaging**입니다 (상대 요동 $N^{-1/2}$). SK에서는 가우스 집중으로 얻지만, 희석 모형에서는
-"clause 하나 = 유계 영향"이라는 국소성만으로 충분합니다.
+**검토 메모.** "총 개수에 조건부로 i.i.d. 라벨"은 원래의 독립 종류별 Poisson 개수와 같은 법칙입니다 (Poisson 분할의 역). ✓
 
 ---
 
@@ -362,81 +433,84 @@ $\mathrm{Var}(\log Z)=O(N)$은 자유에너지의 **self-averaging**입니다 (�
 
 ### 문장별 풀이
 
-1. **"Put $\bar G=\mathbb E_{\mathbf u}G$ and $Z=G-\bar G$"** — $\bar G$는 평균 함수 (결정적), $Z$는 요동. (6.11)에서 $\mathbb E|Z(u)|\le\sqrt{\mathrm{Var}G}\le\sqrt{C_\nu N}$.
-   $\bar G$도 볼록입니다 (볼록 함수들의 평균). 또 $\bar G'=\mathbb EG'$ (문단 5의 교환).
+1. **"Put $\bar G=\mathbb E_{\mathbf u}G$ and $Z=G-\bar G$"** — $\bar G$ 평균 함수, $Z$ 요동, $\mathbb E|Z|\le\sqrt{C_\nu N}$. $\bar G$도 볼록, $\bar G'=\mathbb EG'$.
 
-2. **"forward and backward difference quotients imply …"** — 볼록 함수의 기울기는 오른쪽 할선과 왼쪽 할선 사이에 있습니다:
-   $$\frac{G(u)-G(u-\rho)}\rho\le G'(u)\le\frac{G(u+\rho)-G(u)}\rho,\qquad\bar G\text{도 같음}.$$
-   - 위쪽 한계: $G'(u)$를 오른쪽 할선으로 누르고 $G=\bar G+Z$를 넣으면
-     $$G'(u)-\bar G'(u)\le\frac{Z(u+\rho)-Z(u)}\rho+\underbrace{\frac{\bar G(u+\rho)-\bar G(u)}\rho-\bar G'(u)}_{\le\,\bar G'(u+\rho)-\bar G'(u)}.$$
-     (밑줄: $\bar G$의 오른쪽 할선은 $\bar G'(u+\rho)$ 이하.)
-   - 아래쪽 한계: 왼쪽 할선으로 같은 계산을 하면 $\bar G'(u)-G'(u)\le\frac{|Z(u)|+|Z(u-\rho)|}\rho+\bar G'(u)-\bar G'(u-\rho)$.
-   - 두 쪽을 합쳐 크게 잡으면 원문의 부등식. ✓
+   🔭 **물리.** $\bar G(u)$ = **시료 평균 자유에너지** (열역학적 자유에너지, 탐침 세기의 함수). $Z(u)$ = 그 시료의 자유에너지가 평균에서 벗어난 양.
 
-   **뜻**: 도함수의 요동은 (i) 값의 요동 $|Z|$를 간격 $\rho$로 나눈 것과 (ii) 평균 기울기가 $[u-\rho,u+\rho]$에서 변하는 양으로 눌립니다.
-   (ii)는 평균 함수가 그 근처에서 심하게 꺾일 때만 큽니다.
+2. **할선 부등식** — 볼록성: $\frac{G(u)-G(u-\rho)}\rho\le G'(u)\le\frac{G(u+\rho)-G(u)}\rho$. $G=\bar G+Z$를 넣으면
+   $$G'(u)-\bar G'(u)\le\frac{Z(u+\rho)-Z(u)}\rho+\bar G'(u+\rho)-\bar G'(u),\qquad\bar G'(u)-G'(u)\le\frac{|Z(u)|+|Z(u-\rho)|}\rho+\bar G'(u)-\bar G'(u-\rho).$$
+   합치면 원문의 부등식. ✓
 
-3. **"The monotonicity of $\bar G'$ gives $\int_a^b[\bar G'(u+\rho)-\bar G'(u-\rho)]du\le2\rho[\dots]$"** — (ii)는 점마다 클 수 있지만 $u$에 대해
-   적분하면 작습니다. 두 적분의 차이를 정리하면 양 끝 길이 $2\rho$짜리 구간만 남습니다:
-   $$\int_a^b\bar G'(u+\rho)du-\int_a^b\bar G'(u-\rho)du=\int_{b-\rho}^{b+\rho}\bar G'-\int_{a-\rho}^{a+\rho}\bar G'\le2\rho\,\bar G'(b+\rho)-2\rho\,\bar G'(a-\rho).$$
-   ($\bar G'$가 증가하므로 각 구간에서 최댓값·최솟값으로 누름.) ✓
-   이것이 Lemma 6.1이 **구간 평균**으로만 성립하는 이유입니다. 꺾이는 점 근처의 $u$에서는 (ii)가 크지만, 그런 $u$의 비율이 작습니다.
+   🔭 **물리.** 시료의 평균 응답 $G'$이 열역학적 응답 $\bar G'$에서 벗어나려면 둘 중 하나가 필요합니다:
+   (i) **시료의 자유에너지 자체가 크게 흔들림** ($|Z|/\rho$) — 그러나 (6.11)로 $|Z|\sim\sqrt N$뿐;
+   (ii) **열역학적 응답 $\bar G'$이 $u$ 근처에서 급변** — 곧 **상전이 근처** (1차 전이에서는 $\bar G'$이 점프, 시료마다 어느 쪽 상에 있는지가 달라
+   응답이 튐). 볼록 함수는 잡음이 작으면 기울기도 거의 정해진다는 직관입니다.
 
-4. **"Together with (6.11), this proves (6.12)"** — 2의 부등식에 기대값을 취하고 $u$에 대해 구간 평균:
-   - 첫 항: $\mathbb E|Z|\le\sqrt{C_\nu N}$이 네 번 나오므로 $\le4\sqrt{C_\nu N}/\rho$.
-   - 둘째 항: $\frac1{|I|}\cdot2\rho[\bar G'(b+\rho)-\bar G'(a-\rho)]\le\frac{2\rho}{|I|}\cdot2C_\nu\lambda_\nu$ ((6.11) 둘째 식).
-   - 합치면 (6.12). ✓ ($G'-\bar G'=G'-\mathbb EG'$.)
+3. **"The monotonicity of $\bar G'$ gives …"** —
+   $$\int_a^b\bar G'(u+\rho)du-\int_a^b\bar G'(u-\rho)du=\int_{b-\rho}^{b+\rho}\bar G'-\int_{a-\rho}^{a+\rho}\bar G'\le2\rho[\bar G'(b+\rho)-\bar G'(a-\rho)].$$ ✓
 
-5. **"take $\rho=N^{-1/8}$ … After division by $\lambda_\nu=c_\nu N^{3/4}$, both terms tend to zero"** — $\rho$는 두 항을 맞바꾸는 손잡이입니다:
-   $\rho$가 작으면 첫 항 $\sqrt N/\rho$가 커지고, 크면 둘째 항 $\rho\lambda/|I|$가 커집니다. $\lambda$로 나누면
-   $$\frac{\sqrt N}{\rho\lambda_\nu}\propto N^{\frac12+\frac18-\frac34}=N^{-1/8}\to0,\qquad\frac{\rho}{|I_\nu|}=j^jN^{-1/8}\to0.$$ ✓
-   "within the fixed neighborhood margin": $N$이 크면 $\rho$가 작아져서 $u\pm\rho\in J_\nu$ (문단 3에서 $J_\nu$를 넓게 잡은 이유). ✓
+   🔭 **물리.** 열역학적 응답 $\bar G'$은 단조 (감수율 ≥ 0)이고 크기가 유계이므로 **총 점프량이 유계**입니다. 그러니 (ii)가 큰 "상전이 근처" 세기는
+   $u$ 축의 작은 부분만 차지합니다. 이것이 Lemma 6.1이 **구간 평균**으로만 성립하는 이유이고, GG 항등식이 "거의 모든 온도에서"인 이유와 같습니다.
 
-6. **"Removing the correction to $G'$ costs at most $C_\nu\lambda_\nu^{-1/2}$"** — 지금 제어한 것은 $G'$의 요동인데 필요한 것은 $X_0'$의 요동입니다.
-   $$G'-\mathbb EG'=(X_0'-\mathbb EX_0')+4u(n-\lambda_\nu)$$
-   이므로 둘의 차이는 $4u|n-\lambda_\nu|\le2|n-\lambda_\nu|$, 평균 $\le2\sqrt{\mathrm{Var}\,n}=2\sqrt{\lambda_\nu}$. $\lambda_\nu$로 나누면 $2\lambda_\nu^{-1/2}\to0$. ✓
+4. **"Together with (6.11), this proves (6.12)"** — 첫 항 $\le4\sqrt{C_\nu N}/\rho$, 둘째 항 $\le\frac{2\rho}{|I|}\cdot2C_\nu\lambda_\nu$. ✓
 
-7. **"Thus the root contribution to (6.4) tends to zero."** — 조각 ② $\mathbb E|\langle D\rangle-\mathbb E\langle D\rangle|/\lambda_\nu=\mathbb E|X_0'-\mathbb EX_0'|/\lambda_\nu$의
-   구간 평균이 $\to0$. ✓
+   🔭 **물리.** (시료 잡음 / 분해능) + (분해능 × 응답 크기 / 세기 범위).
 
-8. **"Combining it with (6.10) proves the result after integration over $u_\nu$."** — 0절의 분해와 삼각부등식:
-   $$\mathbb E\langle|D-\mathbb E\langle D\rangle|\rangle\le\underbrace{\mathbb E\langle|D-\langle D\rangle|\rangle}_{①\ (6.10)}+\underbrace{\mathbb E|\langle D\rangle-\mathbb E\langle D\rangle|}_{②\ \text{풀이 7}}.$$
-   $\lambda_\nu$로 나누고 $u_\nu\in I_\nu$에 대해 평균하면 $\to0$. ✓
+5. **"take $\rho=N^{-1/8}$ … both terms tend to zero"** — $\lambda$로 나누면 $N^{-1/8}$과 $j^jN^{-1/8}$. ✓ 큰 $N$에서 $u\pm\rho\in J_\nu$.
 
-9. **"All estimates are uniform in the other parameters, so … (6.5)."** — 위 상수들은 다른 $u_\mu$ 값에 의존하지 않습니다. 그래서 나머지 좌표에 대해
-   $\pi$로 평균해도 같은 한계가 남고, (6.5)가 됩니다. ✓
+   🔭 **물리.** $\rho$는 **탐침 세기의 분해능**입니다. 너무 촘촘히 ($\rho$ 작게) 보면 자유에너지 잡음 $\sqrt N$이 할선 기울기를 흔들고, 너무 성기게
+   ($\rho$ 크게) 보면 그 사이의 상전이 구조가 섞입니다. 둘의 균형점이 $N^{-1/8}$입니다.
+
+6. **"Removing the correction to $G'$ costs at most $C_\nu\lambda_\nu^{-1/2}$"** — $G'-\mathbb EG'=(X_0'-\mathbb EX_0')+4u(n-\lambda_\nu)$, 차이 $\le2|n-\lambda_\nu|$, 평균 $\le2\sqrt{\lambda_\nu}$. ✓
+
+   🔭 **물리.** 보정항의 요동은 **탐침 개수의 시료 간 Poisson 요동** ($\sqrt{\lambda}$)일 뿐이고, 물리적 응답과 무관합니다.
+
+7. **"Thus the root contribution to (6.4) tends to zero."** — ② $\mathbb E|X_0'-\mathbb EX_0'|/\lambda_\nu$의 구간 평균 $\to0$. ✓
+
+   🔭 **물리.** **평균 응답은 시료에 무관** (sample-to-sample 요동이 상대적으로 사라짐).
+
+8. **"Combining it with (6.10) proves the result after integration over $u_\nu$."** —
+   $\mathbb E\langle|D-\mathbb E\langle D\rangle|\rangle\le\mathbb E\langle|D-\langle D\rangle|\rangle+\mathbb E|\langle D\rangle-\mathbb E\langle D\rangle|$, 둘 다 $o(\lambda)$. ✓
+
+   🔭 **물리.** 응답은 **replica에도 (상태·배치), 시료에도** 무관한 상수.
+
+9. **"All estimates are uniform in the other parameters, so … (6.5)."** — 다른 탐침 세기에 대해서도 평균. ✓
+
+   🔭 **물리.** 다른 탐침들을 어떤 세기로 켜 두든 같은 결론 — 탐침을 여러 개 동시에 켜도 된다는 뜻.
 
 ### 지수 정리 (원문에 없는 보충)
 
-$s_N=N^\gamma$로 일반화하면 $\lambda$로 나눈 두 항은 $N^{1/2-\gamma}/\rho$와 $\rho$입니다. 둘을 같게 하는 $\rho=N^{(1/2-\gamma)/2}$에서 오차는
-$N^{(1/2-\gamma)/2}$이므로 **$\gamma>1/2$가 필요**합니다. 값의 요동 $\sqrt N$이 점수의 크기 $N^\gamma$보다 작아야 한다는 뜻입니다. 5장의 $s_N=N^{3/4}$는
-$1/2<\gamma<1$을 만족합니다 ($\gamma<1$은 pressure를 바꾸지 않기 위한 조건, (5.3)).
+$s_N=N^\gamma$면 두 항은 $N^{1/2-\gamma}/\rho$와 $\rho$, 최적 오차 $N^{(1/2-\gamma)/2}$ ⇒ **$\gamma>1/2$가 필요**합니다.
 
-**판단 메모 (수렴 속도).** 둘째 항 $j^jN^{-1/8}$은 정성적으로 0으로 가지만 매우 느립니다. 가장 작은 $j=4$에서도 $j^j=256$이므로,
-이 항이 1보다 작아지려면 $N>256^8\approx1.8\times10^{19}$이 필요합니다. 증명은 속도를 쓰지 않으므로 문제는 없습니다.
+🔭 **물리.** 탐침 신호 ($N^\gamma$)가 **자유에너지의 시료 간 잡음** ($N^{1/2}$)보다 커야 탐침 응답을 읽을 수 있습니다. 동시에 $\gamma<1$이어야 탐침이
+pressure 밀도를 바꾸지 않습니다 ((5.3)). $N^{3/4}$는 "잡음보다는 크고 계를 바꾸지는 않는" 탐침 수입니다.
+
+**판단 메모 (수렴 속도).** 둘째 항 $j^jN^{-1/8}$은 매우 느리게 0으로 갑니다. $j=4$에서도 이 항이 1보다 작으려면 $N>256^8\approx1.8\times10^{19}$.
+증명은 속도를 쓰지 않으므로 논리에는 문제가 없습니다.
 
 ### 수치 확인
 
 무작위 볼록 함수 $G,\bar G$ (서로 다른 $\log\cosh$ 혼합 + 2차항) 2000쌍, 무작위 $u$, $\rho\in(0.01,0.3)$에서 풀이 2의 부등식의
 (좌변 − 우변) 최댓값 $=-0.82<0$. ✓
 
-### 물리적 의미
+### 물리적 의미 (절 전체)
 
-GG 논법의 핵심 문장, "자유에너지가 self-averaging하고 볼록하면 내부 에너지도 거의 모든 온도에서 self-averaging"을 정확히 재현했습니다.
-열적 부분 (6.10)은 **비열이 유한하다**는 것과 같은 논리입니다 (곡률의 적분 = 도함수의 유계 변화). 무질서 부분 (6.12)는 볼록 함수의 도함수가
-평균 주위의 작은 요동으로만 움직인다는 사실입니다. 결과적으로 $\langle|D_\nu-\mathbb E\langle D_\nu\rangle|\rangle=o(s_N)$, 곧 섭동 점수는
-replica에 무관한 상수입니다. 6.4절은 이 집중을 "anchor replica의 점수는 다른 replica들과 상관이 없다"는 형태로 바꿉니다.
+GG 논법 "자유에너지가 self-averaging하고 볼록하면 내부 에너지도 거의 모든 온도에서 self-averaging"을 위계 판으로 재현했습니다.
+- 열적 부분 (6.10): 감수율의 적분 = 응답의 유계 변화 ⇒ 시료 안에서 replica (상태 간 포함) 응답 요동이 작음. 비열이 유한하다는 논리.
+- 시료 간 부분 (6.12): 자유에너지 잡음 $\sqrt N$ ≪ 응답 $N^{3/4}$ ⇒ 상전이 근처를 제외하면 시료 간 응답 요동이 작음.
+
+결론 $\langle|D_\nu-\mathbb E\langle D_\nu\rangle|\rangle=o(s_N)$: **상태 색에 결합한 탐침의 응답이 어느 상태에서 재든 같다.** 6.4절은 이것을
+"탐침을 하나 더 꽂아도 replica들의 통계가 바뀌지 않는다" (확률적 안정성)로 바꾸고, 6.5절은 그것을 Ghirlanda–Guerra형 나무 항등식으로 만듭니다.
 
 ---
 
 ## 요약
 
-- 오차 (6.4)를 열적 요동 ①과 무질서 요동 ②로 나누고, 둘 다 $X_0(u)$로 다룹니다 ($X_0'=\langle D\rangle$, (6.7)).
-- ①: $X_0''=\langle\partial D\rangle+\sum_dm_d\langle(M_d-M_{d-1})^2\rangle\ge m_1\mathrm{Var}-4n$ (6.8). 곡률을 적분하면 도함수 차이로 유계 → (6.9) →
-  Jensen으로 (6.10), 크기 $O(\lambda^{-1/2})$.
-- ②: $G=X_0+2nu^2$를 볼록하게 만들고, Efron–Stein으로 $\mathrm{Var}G=O(N)$ (6.11). 할선 부등식과 $\bar G'$의 단조성으로 (6.12), $\rho=N^{-1/8}$,
-  보정 $4u(n-\lambda)$ 제거.
-- 결과 Lemma 6.1: $\int e_{\nu,N}\,d\pi\to0$. 상수는 $L$과 $\nu$에 의존하고, $s_N=N^\gamma$에서 $\gamma>1/2$가 필요합니다.
+- 오차 (6.4)를 열적 요동 ①과 시료 간 요동 ②로 나누고, 둘 다 시료의 위계 자유에너지 $X_0(u)$로 다룹니다 ($X_0'=\langle D\rangle$, (6.7)).
+- ①: 위계적 요동-응답 정리 $X_0''=\langle\partial D\rangle+\sum_dm_d\langle(M_d-M_{d-1})^2\rangle$ (6.8) — 깊이 $d$ 상태 간 응답 차이가 Parisi 무게 $m_d$로
+  감수율에 들어감. 감수율 적분 = 유계 응답 변화 ⇒ (6.10), 상대 요동 $N^{-3/8}$.
+- ②: 자유에너지의 self-averaging ($\mathrm{Var}=O(N)$, 희석 모형의 국소성 + Efron–Stein) + 볼록성 ⇒ 응답의 시료 간 요동 작음 (6.12), 상전이 근처는 구간 평균으로 처리.
+- 결과 Lemma 6.1. 탐침 수 $N^\gamma$는 자유에너지 잡음보다 커야 하므로 $\gamma>1/2$.
 
 **다음 절 예고**: 6.3절에서 낮은 cavity 증분, 모든 점수의 집중, 모든 나무 모멘트의 수렴을 동시에 만족하는 하나의 수열 $(N_j,\mathbf u_j)$를
 고릅니다 (Lemma 6.2).
